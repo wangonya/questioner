@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color: #212121;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    padding: 30px;
+    display: grid;
+}
+
+.title {
+
+}
+
+a {
+    color: #53e3a6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: tomato;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.nav {
+    height: 60px;
+    width: 100%;
+    background: #50a3a2;
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+    position: relative;
+}
+
+.nav > .nav-header {
+    display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav-title a {
+    color: #fff;
+}
+
+.nav > .nav-btn {
+    display: none;
+}
+
+.nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+}
+
+.nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+    color: tomato;
+}
+
+.nav > #nav-check {
+    display: none;
+}
+
+
+/* ==========================================================================
+   Home page
+   ========================================================================== */
+
+/* Masonry
+   ========================================================================== */
+
+/* Masonry grid */
+.meetups {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+    grid-gap: 10px;
+    grid-auto-rows: minmax(180px, auto);
+    grid-auto-flow: dense;
+    padding: 10px;
+}
+
+#home .grid-item {
+    padding: 1rem;
+    background: linear-gradient(to bottom, rgba(33,33,33,.0) 0%, black 100%);
+    border-radius: 5px;
+    transition: box-shadow .3s;
+    position: relative;
+    overflow:hidden;
+}
+
+#home .grid-item > img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    z-index:-1;
+    top: 0;
+    left: 0;
+    transition: all 1s ease;
+}
+
+#home .grid-item:hover img{
+    transform: scale(1.2);
+}
+
+#home .main {
+    grid-column-end: span 6;
+    grid-row-end: span 2;
+}
+
+#home .featured {
+    grid-column-end: span 3;
+    grid-row-end: span 1;
+}
+
+.text-block {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #919A9F;
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   Responsiveness
+   ========================================================================== */
+
+/* Nav
+   ========================================================================== */
+@media (max-width:600px) {
+    .nav > .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .nav > .nav-btn > label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    .nav > .nav-btn > label > span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #333;
+        height: 0;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0;
+        z-index: 1;
+    }
+    .nav > .nav-links > a {
+        display: block;
+        width: 100%;
+    }
+    .nav > #nav-check:not(:checked) + .nav-links {
+        height: 0;
+    }
+    .nav > #nav-check:checked + .nav-links {
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+    }
+}
+
+/* Home
+   ========================================================================== */
+@media (max-width: 800px) {
+    #home .featured {
+        grid-column-end: span 6;
+        grid-row-end: span 1;
+    }
+}
