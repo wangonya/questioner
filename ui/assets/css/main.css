@@ -326,6 +326,66 @@ h1.auth-title {
     margin-top: 10px;
 }
 
+#question:hover {
+    cursor: pointer;
+}
+
+/* Meetup page questions
+   ========================================================================== */
+#question {
+    box-shadow: 0 0 10px #e3e3e3;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.vote {
+    margin: 0 25px;
+    font-weight: bold;
+    color: #919A9F;
+}
+.vote i {
+    transition: all 50ms ease;
+}
+
+.vote .up i:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    color: #53e3a6;
+}
+
+.vote .down i:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    color: #f0776c;
+}
+
+.votes {
+    margin-top: 3px;
+}
+
+.up, .down {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.profile {
+    margin: 8px 10px 0 0;
+}
+.profile img {
+    width: 75px;
+    border-radius: 50%;
+}
+
+.question-body {
+    margin-top: 5px;
+    padding: 0 15px;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
