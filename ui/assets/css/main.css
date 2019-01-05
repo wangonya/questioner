@@ -17,6 +17,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
+    text-align: justify;
 }
 
 .container {
@@ -104,7 +105,7 @@ a:hover {
     grid-gap: 10px;
     grid-auto-rows: minmax(180px, auto);
     grid-auto-flow: dense;
-    padding: 10px;
+    padding-top: 10px;
 }
 
 #home .grid-item {
@@ -218,6 +219,77 @@ h1.auth-title {
 
 
 /* ==========================================================================
+   Meetup info
+   ========================================================================== */
+#meetup {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+    grid-gap: 10px;
+    grid-auto-rows: minmax(180px, auto);
+    grid-auto-flow: dense;
+}
+
+#meetup .grid-item {
+    padding: 1rem;
+    background: linear-gradient(to bottom, rgba(33,33,33,.0) 0%, black 100%);
+    border-radius: 5px;
+    transition: box-shadow .3s;
+    position: relative;
+    overflow:hidden;
+}
+
+#meetup .grid-item > img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    z-index:-1;
+    top: 0;
+    left: 0;
+}
+
+#meetup .main {
+    grid-column-end: span 6;
+    grid-row-end: span 2;
+}
+
+#meetup .details {
+    background: white;
+    grid-column-end: span 4;
+}
+
+#meetup .aside {
+    background: white;
+    grid-column-end: span 2;
+    grid-row-end: span 1;
+    color: #919A9F;
+}
+
+#meetup .aside img {
+    border-radius: 50%;
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.cta-going {
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    background: #f0776c;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    outline:0;
+    margin-top: 10px;
+}
+
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
@@ -283,6 +355,15 @@ h1.auth-title {
    ========================================================================== */
 @media (max-width: 800px) {
     #home .featured {
+        grid-column-end: span 6;
+        grid-row-end: span 1;
+    }
+}
+
+/* Meetup info
+   ========================================================================== */
+@media (max-width: 800px) {
+    #meetup .aside {
         grid-column-end: span 6;
         grid-row-end: span 1;
     }
