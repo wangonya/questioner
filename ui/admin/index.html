@@ -45,17 +45,33 @@
                 <br>
                 <li class="feed-item" id="feed-item">
                     <time class="date" datetime="9-25" id="meetup-date">Sep 25</time>
-                    <span class="text"><a href="#" id="meetup_id">“Meetup 1”</a></span>
+                    <span class="text"><a href="#" id="meetup_id">“Meetup 1”</a>
+                        <a href="#open-modal"><i class="far fa-trash-alt" title="Delete this meetup"></i></a>
+                    </span>
                 </li>
                 <li class="feed-item">
                     <time class="date" datetime="9-23">Sep 23</time>
-                    <span class="text"><a href="#">“Meetup 2”</a></span>
+                    <span class="text"><a href="#">“Meetup 2”</a>
+                        <a href="#open-modal"><i class="far fa-trash-alt" title="Delete this meetup"></i></a>
+                    </span>
                 </li>
                 <li class="feed-item">
                     <time class="date" datetime="9-23">Sep 23</time>
-                    <span class="text"><a href="#">“Meetup 3”</a></span>
+                    <span class="text"><a href="#">“Meetup 3”</a>
+                        <a href="#open-modal"><i class="far fa-trash-alt" title="Delete this meetup"></i></a>
+                    </span>
                 </li>
             </ol>
+
+            <div id="open-modal" class="modal-window">
+                <div>
+                    <a href="#" title="Close" class="modal-close">Cancel</a>
+                    <h2>Not so fast!</h2>
+                    <div>You are about to delete this meetup and all its data. This action is not reversible. <b>Are you sure?</b></div>
+                    <button class="modal-button" onclick="">I'm sure</button>
+                </div>
+            </div>
+
         </div>
         <div>
             <ol class="activity-feed" id="questions-feed">
