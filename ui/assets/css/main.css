@@ -449,14 +449,14 @@ h1.auth-title {
     justify-content: space-between;
 }
 
-#profile-page .user-profile {
+.user-profile {
     color: #919A9F;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-#profile-page .user-profile img {
+.user-profile img {
     border-radius: 50%;
     float: left;
     width: 100px;
@@ -510,6 +510,15 @@ h1.auth-title {
 .activity-feed .feed-item .text {
     position: relative;
     top: -3px;
+}
+
+
+/* ==========================================================================
+   Admin page
+   ========================================================================== */
+#admin-page {
+    display: flex;
+    justify-content: space-between;
 }
 
 
