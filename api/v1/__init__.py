@@ -1,4 +1,5 @@
 from flask import Flask
+from v1.auth.sign_up import sign_up
 
 
 def create_app():
@@ -8,5 +9,8 @@ def create_app():
     @app.route('/')
     def hello():
         return "Hello World!"
+
+    # register blueprints
+    app.register_blueprint(sign_up)
 
     return app
