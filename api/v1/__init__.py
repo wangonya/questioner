@@ -2,6 +2,7 @@ from flask import Flask
 from v1.auth.sign_up import sign_up
 from v1.auth.log_in import log_in
 from v1.auth.reset import reset
+from v1.meetups.view_meetups import upcoming_meetups
 
 
 def create_app():
@@ -16,5 +17,6 @@ def create_app():
     app.register_blueprint(sign_up)
     app.register_blueprint(log_in)
     app.register_blueprint(reset)
+    app.register_blueprint(upcoming_meetups)
 
     return app
