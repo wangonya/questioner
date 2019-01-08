@@ -4,6 +4,7 @@ from v1.auth.sign_up import sign_up
 from v1.auth.log_in import log_in
 from v1.auth.reset import reset
 from v1.meetups.view_meetups import upcoming_meetups, specific_meetup
+from v1.questions.post_questions import post_q
 
 
 def create_app():
@@ -21,5 +22,6 @@ def create_app():
     app.register_blueprint(reset)
     app.register_blueprint(upcoming_meetups)
     app.register_blueprint(specific_meetup)
+    app.register_blueprint(post_q)
 
     return app
