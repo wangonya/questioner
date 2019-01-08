@@ -1,5 +1,6 @@
 from flask import Flask
 from v1.auth.sign_up import sign_up
+from v1.auth.log_in import log_in
 
 
 def create_app():
@@ -12,5 +13,6 @@ def create_app():
 
     # register blueprints
     app.register_blueprint(sign_up)
+    app.register_blueprint(log_in)
 
     return app
