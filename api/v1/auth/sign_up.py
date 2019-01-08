@@ -1,5 +1,6 @@
 from flask import request, abort, jsonify, Blueprint
 from werkzeug.security import generate_password_hash
+from flask_jwt_extended import create_access_token
 from v1.auth import models
 import re
 import datetime as date
@@ -58,12 +59,14 @@ def user_signup():
                 'isAdmin': isadmin
             }
             models.users.append(user)
+            access_token = create_access_token(identity=email)
             return jsonify(
                 {
                     "status": 201,
                     "data": [{
                         "msg": "user registered successfully",
-                        "user": user
+                        "user": user,
+                        "access_token": access_token
                     }]
                 }), 201
     except (ValueError, KeyError, TypeError):

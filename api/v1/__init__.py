@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from v1.auth.sign_up import sign_up
 from v1.auth.log_in import log_in
 from v1.auth.reset import reset
@@ -8,6 +9,7 @@ from v1.meetups.view_meetups import upcoming_meetups, specific_meetup
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_pyfile('config.cfg')
+    jwt = JWTManager(app)
 
     @app.route('/')
     def hello():
