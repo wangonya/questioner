@@ -2,6 +2,7 @@ from flask import request, abort, jsonify, Blueprint
 from werkzeug.security import generate_password_hash
 from v1.auth import models
 import re
+import datetime as date
 
 sign_up = Blueprint('sign_up', __name__, url_prefix='/api/v1/auth')
 
@@ -10,8 +11,13 @@ sign_up = Blueprint('sign_up', __name__, url_prefix='/api/v1/auth')
 def user_signup():
 
     try:
+        firstname = request.json['firstname']
+        lastname = request.json['lastname']
+        othername = request.json['othername']
         email = request.json['email']
+        phonenumber = request.json['phoneNumber']
         password = request.json['password']
+        isadmin = request.json['isAdmin']
 
         # check if email already exists to avoid duplicates
         if any(u['email'] == email for u in models.users):
@@ -35,9 +41,21 @@ def user_signup():
                     "error": "password length invalid"
                 }), 422
         else:
+            try:
+                u_id = models.users[-1]['id'] + 1
+            except IndexError:
+                u_id = 1
             user = {
+                'id': u_id,
                 'email': email,
-                'password': generate_password_hash(password)
+                'password': generate_password_hash(password),
+                'firstname': firstname,
+                'lastname': lastname,
+                'othername': othername,
+                'phoneNumber': phonenumber,
+                'username': email.split('@')[0],
+                'registered': date.datetime.now(),
+                'isAdmin': isadmin
             }
             models.users.append(user)
             return jsonify(
@@ -45,7 +63,7 @@ def user_signup():
                     "status": 201,
                     "data": [{
                         "msg": "user registered successfully",
-                        "email": email
+                        "user": user
                     }]
                 }), 201
     except (ValueError, KeyError, TypeError):
