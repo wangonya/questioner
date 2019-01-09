@@ -6,6 +6,7 @@ from v1.auth.log_in import log_in
 from v1.auth.reset import reset
 from v1.meetups.view_meetups import upcoming_meetups, specific_meetup
 from v1.meetups.create_meetup import create_m
+from v1.meetups.rsvp import rsvp_m
 from v1.questions.post_questions import post_q
 from v1.questions.vote import upvote_q
 
@@ -44,5 +45,6 @@ def create_app(test_config=None):
     app.register_blueprint(post_q)
     app.register_blueprint(upvote_q)
     app.register_blueprint(create_m)
+    app.register_blueprint(rsvp_m)
 
     return app
