@@ -3,10 +3,6 @@ python:
   - "3.6"
 install:
   - pip install -r requirements.txt
-# safelist
-branches:
-  only:
-  - develop
 
 script:
   - pytest --cov=v1
