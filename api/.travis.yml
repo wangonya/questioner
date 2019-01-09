@@ -9,4 +9,7 @@ branches:
   - develop
 
 script:
-  - pytest
+  - pytest --cov=v1
+
+after_success:
+  - coveralls
