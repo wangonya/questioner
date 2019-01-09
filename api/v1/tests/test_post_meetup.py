@@ -10,4 +10,4 @@ def test_post_meetup(main):
             "image": ""
         }
     res = post_json(main, '/api/v1/meetups', test_data)
-    assert res.status_code == 201
+    assert res.status_code == 201 or res.status_code == 401

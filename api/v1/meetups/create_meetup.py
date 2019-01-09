@@ -31,6 +31,13 @@ def create_meetup():
         # and retrieve the user id from it
         try:
             userid = [u for u in users if u['email'] == user][0]['id']
+            is_admin = [u for u in users if u['email'] == user][0]['isAdmin']
+            if not is_admin:
+                return jsonify(
+                    {
+                        "status": 401,
+                        "error": "only admin can post meetups"
+                    }), 401
         except IndexError:
             return jsonify(
                 {
