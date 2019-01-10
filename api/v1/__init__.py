@@ -8,6 +8,7 @@ from v1.meetups.view_meetups import upcoming_meetups, specific_meetup
 from v1.meetups.create_meetup import create_m
 from v1.meetups.rsvp import rsvp_m
 from v1.questions.post_questions import post_q
+from v1.questions.answer_question import answer_q
 from v1.questions.vote import upvote_q, downvote_q
 
 
@@ -47,5 +48,6 @@ def create_app(test_config=None):
     app.register_blueprint(create_m)
     app.register_blueprint(rsvp_m)
     app.register_blueprint(downvote_q)
+    app.register_blueprint(answer_q)
 
     return app
