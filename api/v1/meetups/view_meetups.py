@@ -1,8 +1,11 @@
 from flask import jsonify, Blueprint
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.v1.meetups import models
+from api.v1.auth.models import users
 
 upcoming_meetups = Blueprint('upcoming_meetups', __name__, url_prefix='/api/v1/')
 specific_meetup = Blueprint('specific_meetup', __name__, url_prefix='/api/v1/')
+admin_meetup = Blueprint('admin_meetup', __name__, url_prefix='/api/v1/')
 
 
 @upcoming_meetups.route('/meetups/upcoming', methods=['GET'])
@@ -29,3 +32,35 @@ def get_specific_meetup(m_id):
                 "status": 200,
                 "data": meetup[0]
             }), 200
+
+
+@admin_meetup.route('/admin/profile/<int:u_id>', methods=['GET'])
+@jwt_required
+def get_admin_meetup(u_id):
+
+    # get current user from jwt token
+    user = get_jwt_identity()
+
+    # check if that user exists
+    # and if the user is admin
+    try:
+        is_admin = [u for u in users if u['email'] == user][0]['isAdmin']
+        if not is_admin:
+            return jsonify(
+                    {
+                        "status": 401,
+                        "error": "only admin can post meetups"
+                    }), 401
+    except IndexError:
+        return jsonify(
+                {
+                    "status": 500,
+                    "error": "error retrieving user"
+                }), 500
+    meetup = [meetup for meetup in models.meetups if meetup['createdBy'] == u_id]
+    return jsonify(
+            {
+                "status": 200,
+                "data": meetup
+            }), 200
+        
