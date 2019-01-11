@@ -28,4 +28,4 @@ Crowd-source questions for a meetup. Questioner helps the meetup organizer prior
 * Use a Rest client to test the endpoints
 
 # Running tests
-* Pytest is used as the test client. In the project directory, run: `pytest -vv` to run the tests, or `pytest -cov=/app` to see the coverage
+* Pytest is used as the test client. In the project directory, run: `pytest -vv` to run the tests, or `pytest -cov=/api` to see the coverage
