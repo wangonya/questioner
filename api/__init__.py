@@ -1,6 +1,8 @@
 import os
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_jwt_extended import JWTManager
+from flask_restful import Api, Resource
+
 from api.v1.auth.sign_up import sign_up
 from api.v1.auth.log_in import log_in
 from api.v1.auth.reset import reset
@@ -14,7 +16,12 @@ from api.v1.questions.vote import upvote_q, downvote_q
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    api_bp = Blueprint('api', __name__)
+    api = Api(api_bp)
     jwt = JWTManager(app)
+
+    # register blueprint
+    app.register_blueprint(api_bp, url_prefix='/api/v1')
 
     app.config.from_mapping(
         SECRET_KEY='questioner-dev-secret-key',
@@ -33,22 +40,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
-    def hello():
-        return "Hello World!"
+    class HelloWorld(Resource):
+        def get(self):
+            return {'hello': 'world'}
 
-    # register blueprints
-    app.register_blueprint(sign_up)
-    app.register_blueprint(log_in)
-    app.register_blueprint(reset)
-    app.register_blueprint(upcoming_meetups)
-    app.register_blueprint(specific_meetup)
-    app.register_blueprint(admin_meetup)
-    app.register_blueprint(post_q)
-    app.register_blueprint(upvote_q)
-    app.register_blueprint(create_m)
-    app.register_blueprint(rsvp_m)
-    app.register_blueprint(downvote_q)
-    app.register_blueprint(answer_q)
+    # register routes
+    api.add_resource(HelloWorld, '/')
 
     return app
