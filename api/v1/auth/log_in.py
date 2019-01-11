@@ -1,7 +1,7 @@
 from flask import request, abort, jsonify, Blueprint
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token
-from v1.auth import models
+from api.v1.auth import models
 import re
 
 log_in = Blueprint('log_in', __name__, url_prefix='/api/v1/auth')
