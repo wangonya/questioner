@@ -1,4 +1,4 @@
-from v1.tests import main, patch_json
+from api.v1.tests import main, patch_json
 
 
 def test_upvote_question(main):
