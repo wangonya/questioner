@@ -1,5 +1,5 @@
 from flask import request, abort, jsonify, Blueprint
-from v1.auth import models
+from api.v1.auth import models
 import re
 
 reset = Blueprint('reset', __name__, url_prefix='/api/v1/auth')
