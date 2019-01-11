@@ -1,4 +1,4 @@
-from v1.tests import main, post_json
+from api.v1.tests import main, post_json
 
 
 def test_rsvp_meetup(main):

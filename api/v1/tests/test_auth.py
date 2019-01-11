@@ -1,4 +1,4 @@
-from v1.tests import main, post_json
+from api.v1.tests import main, post_json
 
 
 def test_sign_up_valid(main):

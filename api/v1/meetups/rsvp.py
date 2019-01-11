@@ -1,7 +1,7 @@
 from flask import request, abort, jsonify, Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from v1.meetups import models
-from v1.auth.models import users
+from api.v1.meetups import models
+from api.v1.auth.models import users
 
 rsvp_m = Blueprint('rsvp', __name__, url_prefix='/api/v1/')
 

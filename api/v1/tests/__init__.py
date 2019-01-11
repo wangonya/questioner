@@ -1,11 +1,11 @@
 import pytest
 import json
 from flask_jwt_extended import create_access_token
-import v1
+import api
 
 # manually push app context
 # to avoid working outside of application context
-ctx = v1.create_app().test_request_context()
+ctx = api.create_app().test_request_context()
 ctx.push()
 access_token = create_access_token('kwangonya@gmail.com')
 headers = {'Authorization': 'Bearer {}'.format(access_token)}
@@ -14,7 +14,7 @@ ctx.pop()
 
 @pytest.fixture
 def main():
-    main = v1.create_app()
+    main = api.create_app()
     return main.test_client()
 
 

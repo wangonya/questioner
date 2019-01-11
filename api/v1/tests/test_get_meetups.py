@@ -1,4 +1,4 @@
-from v1.tests import main
+from api.v1.tests import main
 
 
 def test_get_upcoming_meetups(main):

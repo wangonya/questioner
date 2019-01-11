@@ -1,7 +1,7 @@
 from flask import jsonify, Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from v1.questions import models
-from v1.auth.models import users
+from api.v1.questions import models
+from api.v1.auth.models import users
 
 upvote_q = Blueprint('upvote_q', __name__, url_prefix='/api/v1')
 downvote_q = Blueprint('downvote_q', __name__, url_prefix='/api/v1')

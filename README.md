@@ -22,8 +22,9 @@ Crowd-source questions for a meetup. Questioner helps the meetup organizer prior
 
 # How to run the app
 * Clone the repo
-* Activate venv and run `pip3 install requirements.txt`
-* Run `run.py`
+* Activate `virtualenv venv` and run `pip3 install requirements.txt`
+* `export FLASK_APP=run.py`
+* Run `python3 -m flask run`
 * Use a Rest client to test the endpoints
 
 # Running tests

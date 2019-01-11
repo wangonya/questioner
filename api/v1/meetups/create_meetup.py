@@ -1,8 +1,8 @@
 from flask import request, abort, jsonify, Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import datetime as date
-from v1.meetups import models
-from v1.auth.models import users
+from api.v1.meetups import models
+from api.v1.auth.models import users
 
 create_m = Blueprint('create_m', __name__, url_prefix='/api/v1/')
 
