@@ -1,5 +1,5 @@
 from flask import jsonify, Blueprint
-from v1.meetups import models
+from api.v1.meetups import models
 
 upcoming_meetups = Blueprint('upcoming_meetups', __name__, url_prefix='/api/v1/')
 specific_meetup = Blueprint('specific_meetup', __name__, url_prefix='/api/v1/')
