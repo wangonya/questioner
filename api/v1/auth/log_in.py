@@ -1,50 +1,43 @@
-from flask import request, abort, jsonify, Blueprint
-from werkzeug.security import check_password_hash
-from flask_jwt_extended import create_access_token
-from api.v1.auth import models
 import re
 
-log_in = Blueprint('log_in', __name__, url_prefix='/api/v1/auth')
+from flask_restful import Resource, reqparse
+from flask_jwt_extended import create_access_token
+
+from ...error_handlers import UserLoginError, InvalidEmailFormatError
+from ..auth.models import AuthModel
 
 
-@log_in.route('/login', methods=['POST'])
-def user_login():
+class Login(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("email",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
+    parser.add_argument("password",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
 
-    try:
-        email = request.json['email']
-        password = request.json['password']
+    @staticmethod
+    def post():
+        data = Login.parser.parse_args()
 
-        # check that data is in a correct format
-        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
-            return jsonify(
-                {
-                    "status": 400,
-                    "error": "email format invalid"
-                }), 400
-        if any(u['email'] == email for u in models.users):
-            get_user_password = [u['password'] for u in models.users if u['email'] == email]
-            if check_password_hash(get_user_password[0], password):
-                access_token = create_access_token(identity=email)
-                return jsonify(
-                    {
-                        "status": 200,
-                        "data": [{
-                            "msg": "user logged in successfully",
-                            "email": email,
-                            "access_token": access_token
-                        }]
-                    }), 200
-            else:
-                return jsonify(
-                    {
-                        "status": 401,
-                        "error": "wrong password"
-                    }), 401
+        # check that email is in a correct format
+        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
+            raise InvalidEmailFormatError
+
+        # verify password hash
+        password = AuthModel.verify_hash(data["email"], data["password"])
+
+        if AuthModel.find_by_email(data["email"]) and password:
+
+            response = {
+                "status": 200,
+                "message": "user logged in successfully",
+                "data": [{
+                    "access_token": create_access_token(data["email"])
+                }]}
+
+            return response, 200
         else:
-            return jsonify(
-                {
-                    "status": 401,
-                    "error": "that account does not exist"
-                }), 401
-    except (ValueError, KeyError, TypeError):
-        abort(400)
+            raise UserLoginError
