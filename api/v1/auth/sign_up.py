@@ -1,6 +1,9 @@
+import re
+
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 
+from ...error_handlers import UserAlreadyExistsError, InvalidEmailFormatError
 from ..auth.models import AuthModel
 
 
@@ -43,13 +46,13 @@ class Signup(Resource):
     def post():
         data = Signup.parser.parse_args()
 
+        # check if email already exists to avoid duplicates
         if AuthModel.find_by_email(data["email"]):
-            response = {
-                "status": 409,
-                "error": "A user with that email already exists"
-                }
+            raise UserAlreadyExistsError
 
-            return response, 409
+        # check that email is in a correct format
+        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
+            raise InvalidEmailFormatError
         
         user = AuthModel(**data)
         user.save_to_db()
