@@ -11,11 +11,11 @@ class InvalidEmailFormatError(HTTPException):
 
 errors = {
     "UserAlreadyExistsError": {
-        "error": "A user with that email already exists",
+        "message": "A user with that email already exists",
         "status": 409,
     },
     "InvalidEmailFormatError": {
-        "error": "Invalid email format",
+        "message": "Invalid email format",
         "status": 400,
     },
 }
