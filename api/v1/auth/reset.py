@@ -1,37 +1,35 @@
-from flask import request, abort, jsonify, Blueprint
-from api.v1.auth import models
 import re
 
-reset = Blueprint('reset', __name__, url_prefix='/api/v1/auth')
+from flask_restful import Resource, reqparse
+
+from ...error_handlers import DataIndexError, InvalidEmailFormatError
+from ..auth.models import AuthModel
 
 
-@reset.route('/reset', methods=['POST'])
-def user_reset():
+class Reset(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("email",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
 
-    try:
-        email = request.json['email']
+    @staticmethod
+    def post():
+        data = Reset.parser.parse_args()
 
-        # check that data is in a correct format
-        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
-            return jsonify(
-                {
-                    "status": 400,
-                    "error": "email format invalid"
-                }), 400
-        if any(u['email'] == email for u in models.users):
-            return jsonify(
-                {
-                    "status": 200,
-                    "data": [{
-                        "msg": "a reset link has been sent to your email",
-                        "email": email
-                    }]
-                }), 200
+        # check that email is in a correct format
+        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
+            raise InvalidEmailFormatError
+
+        if AuthModel.find_by_email(data["email"]):
+
+            response = {
+                "status": 200,
+                "message": "password reset instructions have been sent to your email",
+                "data": [{
+                    "email": data["email"]
+                }]}
+
+            return response, 200
         else:
-            return jsonify(
-                {
-                    "status": 401,
-                    "error": "that account does not exist"
-                }), 401
-    except (ValueError, KeyError, TypeError):
-        abort(400)
+            raise DataIndexError
