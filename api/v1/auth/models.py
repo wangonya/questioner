@@ -25,12 +25,12 @@ class AuthModel:
 
     @classmethod
     def find_by_email(cls, email):
-        return any(u.email == email for u in AuthModel.user_model)
+        return any(u.email == email for u in cls.user_model)
 
-    @staticmethod
-    def verify_hash(email, unhashed):
+    @classmethod
+    def verify_hash(cls, email, unhashed):
         try:
-            hashed = [u.password for u in AuthModel.user_model if u.email == email][0]
+            hashed = [u.password for u in cls.user_model if u.email == email][0]
         except IndexError:
             raise DataIndexError
         return check_password_hash(hashed, unhashed)
