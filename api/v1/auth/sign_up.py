@@ -26,21 +26,9 @@ class Signup(Resource):
                         required=True,
                         help="This field cannot be left blank!")
     parser.add_argument("phonenumber",
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
+                        type=str)
     parser.add_argument("othername",
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
-    parser.add_argument("username",
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
-    parser.add_argument("isadmin",
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
+                        type=str)
 
     @staticmethod
     def post():
