@@ -1,5 +1,7 @@
 from datetime import datetime
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from ...error_handlers import DataIndexError
 
 
 class AuthModel:
@@ -24,3 +26,11 @@ class AuthModel:
     @classmethod
     def find_by_email(cls, email):
         return any(u.email == email for u in AuthModel.user_model)
+
+    @staticmethod
+    def verify_hash(email, unhashed):
+        try:
+            hashed = [u.password for u in AuthModel.user_model if u.email == email][0]
+        except IndexError:
+            raise DataIndexError
+        return check_password_hash(hashed, unhashed)
