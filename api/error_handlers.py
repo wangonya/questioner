@@ -9,6 +9,14 @@ class InvalidEmailFormatError(HTTPException):
     pass
 
 
+class UserLoginError(HTTPException):
+    pass
+
+
+class DataIndexError(HTTPException):
+    pass
+
+
 errors = {
     "UserAlreadyExistsError": {
         "message": "A user with that email already exists",
@@ -17,5 +25,13 @@ errors = {
     "InvalidEmailFormatError": {
         "message": "Invalid email format",
         "status": 400,
+    },
+    "UserLoginError": {
+        "message": "Incorrect login details",
+        "status": 401,
+    },
+    "DataIndexError": {
+        "message": "No data exists in the requested resource",
+        "status": 404,
     },
 }
