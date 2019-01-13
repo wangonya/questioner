@@ -1,66 +1,95 @@
-from flask import jsonify, Blueprint
+from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from api.v1.meetups import models
-from api.v1.auth.models import users
 
-upcoming_meetups = Blueprint('upcoming_meetups', __name__, url_prefix='/api/v1/')
-specific_meetup = Blueprint('specific_meetup', __name__, url_prefix='/api/v1/')
-admin_meetup = Blueprint('admin_meetup', __name__, url_prefix='/api/v1/')
+from ..meetups.models import MeetupModel
+from ..auth.models import AuthModel
+from ...error_handlers import AdminProtectedError
 
 
-@upcoming_meetups.route('/meetups/upcoming', methods=['GET'])
-def get_upcoming_meetups():
-    return jsonify(
-        {
+class Meetups(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("title",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
+    parser.add_argument("location",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
+    parser.add_argument("happening_on",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
+    parser.add_argument("image",
+                        type=str)
+    parser.add_argument("tags", action="append")
+
+    @staticmethod
+    def get():
+        return {"status": 200,
+                "data": MeetupModel.meetups}, 200
+
+    @jwt_required
+    def post(self):
+        data = Meetups.parser.parse_args()
+
+        # get current user from jwt token
+        user = get_jwt_identity()
+        creator = AuthModel.find_by_uid(user)
+        is_admin = AuthModel.check_if_admin(user)
+
+        if creator and is_admin:
+            title = data["title"]
+            creator_id = creator
+            location = data["location"]
+            happening_on = data["happening_on"]
+            tags = data["tags"]
+            image = data["image"]
+
+            meetup = MeetupModel(title, creator_id, location,
+                                 happening_on, tags, image)
+            meetup.save_meetup_to_db()
+
+            response = {
+                "status": 200,
+                "message": "meetup created successfully",
+                "data": [{
+                    "title": title,
+                    "location": location,
+                    "happeningOn": happening_on,
+                    "tags": tags,
+                }]}
+
+            return response, 200
+        else:
+            raise AdminProtectedError
+
+
+class GetSpecificMeetup(Resource):
+    @staticmethod
+    def get(m_id):
+        meetup = MeetupModel.find_by_m_id(m_id)
+
+        response = {
             "status": 200,
-            "data": models.meetups
-        }), 200
+            "data": [meetup]
+                }
+
+        return response, 200
 
 
-@specific_meetup.route('/meetups/<int:m_id>', methods=['GET'])
-def get_specific_meetup(m_id):
-    meetup = [meetup for meetup in models.meetups if meetup['id'] == m_id]
-    if len(meetup) == 0:
-        return jsonify(
-            {
-                "status": 404,
-                "error": "a meetup with id {} does not exist".format(m_id)
-            }), 404
-    else:
-        return jsonify(
-            {
+class GetAdminMeetups(Resource):
+    @jwt_required
+    def get(self, uid):
+        user = get_jwt_identity()
+        is_admin = AuthModel.check_if_admin(user)
+
+        if is_admin:
+            meetups = MeetupModel.find_admin_meetups(uid)
+
+            response = {
                 "status": 200,
-                "data": meetup[0]
-            }), 200
+                "data": meetups
+            }
 
-
-@admin_meetup.route('/admin/profile/<int:u_id>', methods=['GET'])
-@jwt_required
-def get_admin_meetup(u_id):
-
-    # get current user from jwt token
-    user = get_jwt_identity()
-
-    # check if that user exists
-    # and if the user is admin
-    try:
-        is_admin = [u for u in users if u['email'] == user][0]['isAdmin']
-        if not is_admin:
-            return jsonify(
-                    {
-                        "status": 401,
-                        "error": "only admin can post meetups"
-                    }), 401
-    except IndexError:
-        return jsonify(
-                {
-                    "status": 500,
-                    "error": "error retrieving user"
-                }), 500
-    meetup = [meetup for meetup in models.meetups if meetup['createdBy'] == u_id]
-    return jsonify(
-            {
-                "status": 200,
-                "data": meetup
-            }), 200
-        
+            return response, 200
