@@ -17,6 +17,10 @@ class DataIndexError(HTTPException):
     pass
 
 
+class AdminProtectedError(HTTPException):
+    pass
+
+
 errors = {
     "UserAlreadyExistsError": {
         "message": "A user with that email already exists",
@@ -33,5 +37,9 @@ errors = {
     "DataIndexError": {
         "message": "No data exists in the requested resource",
         "status": 404,
+    },
+    "AdminProtectedError": {
+        "message": "Only admins can access this route",
+        "status": 401,
     },
 }
