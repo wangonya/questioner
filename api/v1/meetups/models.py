@@ -23,8 +23,6 @@ class MeetupModel:
         }
     ]
 
-    rsvps = []
-
     def __init__(self, title, creator, location,
                  happening_on, tags, image):
         self.m_id = len(MeetupModel.meetups) + 1
@@ -38,9 +36,6 @@ class MeetupModel:
 
     def save_meetup_to_db(self):
         MeetupModel.meetups.append(self)
-
-    def save_rsvp_to_db(self):
-        MeetupModel.rsvps.append(self)
 
     @classmethod
     def find_by_m_id(cls, m_id):
@@ -57,3 +52,16 @@ class MeetupModel:
         except IndexError:
             raise DataIndexError
         return meetup
+
+
+class RsvpsModel:
+    rsvps = []
+
+    def __init__(self, status, uid, m_id):
+        self.rsvp_id = len(RsvpsModel.rsvps) + 1
+        self.status = status
+        self.uid = uid
+        self.m_id = m_id
+
+    def save_rsvp_to_db(self):
+        RsvpsModel.rsvps.append(self)
