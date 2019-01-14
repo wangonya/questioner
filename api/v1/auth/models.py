@@ -1,7 +1,7 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ...error_handlers import DataIndexError, AdminProtectedError
+from ...error_handlers import DataIndexError, AdminProtectedError, UserLoginError
 
 
 class AuthModel:
@@ -48,5 +48,5 @@ class AuthModel:
         try:
             hashed = [u.password for u in cls.user_model if u.email == email][0]
         except IndexError:
-            raise DataIndexError
+            raise UserLoginError
         return check_password_hash(hashed, unhashed)
