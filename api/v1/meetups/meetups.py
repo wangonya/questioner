@@ -29,6 +29,8 @@ class Meetups(Resource):
         return {"status": 200,
                 "data": MeetupModel.meetups}, 200
 
+
+class PostMeetups(Resource):
     @jwt_required
     def post(self):
         data = Meetups.parser.parse_args()
@@ -60,7 +62,7 @@ class Meetups(Resource):
                     "tags": tags,
                 }]}
 
-            return response, 200
+            return response, 201
         else:
             raise AdminProtectedError
 
