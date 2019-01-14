@@ -7,7 +7,7 @@ from ..auth.models import AuthModel
 
 class Upvote(Resource):
     @jwt_required
-    def post(self, q_id):
+    def patch(self, q_id):
         meetup = PostQuestionsModel.find_meetup_by_q_id(q_id)
         title = PostQuestionsModel.find_title_by_q_id(q_id)
         body = PostQuestionsModel.find_body_by_q_id(q_id)
@@ -32,7 +32,7 @@ class Upvote(Resource):
 
 class DownVote(Resource):
     @jwt_required
-    def post(self, q_id):
+    def patch(self, q_id):
         meetup = PostQuestionsModel.find_meetup_by_q_id(q_id)
         title = PostQuestionsModel.find_title_by_q_id(q_id)
         body = PostQuestionsModel.find_body_by_q_id(q_id)
