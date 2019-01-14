@@ -3,7 +3,7 @@ import re
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 
-from ...error_handlers import UserAlreadyExistsError, InvalidEmailFormatError
+from ...error_handlers import UserAlreadyExistsError, InvalidEmailFormatError, InvalidPasswordLengthError
 from ..auth.models import AuthModel
 
 
@@ -41,6 +41,10 @@ class Signup(Resource):
         # check that email is in a correct format
         if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
             raise InvalidEmailFormatError
+
+        # check that password has appropriate length
+        if 6 > len(data["password"]) or 12 < len(data["password"]):
+            raise InvalidPasswordLengthError
         
         user = AuthModel(**data)
         user.save_to_db()
