@@ -1,182 +1,56 @@
-from flask import jsonify, Blueprint
+from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from api.v1.questions import models
-from api.v1.auth.models import users
 
-upvote_q = Blueprint('upvote_q', __name__, url_prefix='/api/v1')
-downvote_q = Blueprint('downvote_q', __name__, url_prefix='/api/v1')
+from ..questions.models import VoteModel, PostQuestionsModel
+from ..auth.models import AuthModel
 
 
-# TODO: REFRACTOR TO USE OOP
-@upvote_q.route('/questions/<int:q_id>/upvote', methods=['PATCH'])
-@jwt_required
-def upvote_question(q_id):
-    # get a list of the question object with the matching question-id
-    # and retrieve the meetup info from it
-    try:
-        meetup = [q for q in models.questions if q['id'] == q_id][0]['meetup']
-        title = [q for q in models.questions if q['id'] == q_id][0]['title']
-        body = [q for q in models.questions if q['id'] == q_id][0]['body']
-    except IndexError:
-        return jsonify(
-            {
-                "status": 500,
-                "error": "error retrieving meetup"
-            }), 500
+class Upvote(Resource):
+    @jwt_required
+    def patch(self, q_id):
+        meetup = PostQuestionsModel.find_meetup_by_q_id(q_id)
+        title = PostQuestionsModel.find_title_by_q_id(q_id)
+        body = PostQuestionsModel.find_body_by_q_id(q_id)
+        user = get_jwt_identity()
+        voter = AuthModel.find_by_uid(user)
 
-    # get current user from jwt token
-    user = get_jwt_identity()
+        votes = VoteModel.save_upvote_to_db(voter, q_id)
 
-    # get a list of the user object with the matching email retrieved from get_jwt_identity()
-    # and retrieve the user id from it
-    try:
-        userid = [u for u in users if u['email'] == user][0]['id']
-    except IndexError:
-        return jsonify(
-            {
-                "status": 500,
-                "error": "error retrieving user"
-            }), 500
+        response = {
+            "status": 201,
+            "message": "vote added successfully",
+            "data": [{
+                "title": title,
+                "body": body,
+                "meetup": meetup,
+                "votes": votes
+            }]
+        }
 
-    upvote = {
-        "user": userid,
-        "question": q_id,
-        "count": 1
-    }
-
-    # check if user has already voted
-    # if they have, remove the record
-    # if not, append
-    if any(u['user'] == userid and u['question'] == q_id for u in models.votes):
-        try:
-            models.votes.remove(upvote)
-            return jsonify(
-                {
-                    "status": 200,
-                    "data": [{
-                        "msg": "vote removed",
-                        "title": title,
-                        "body": body,
-                        "meetup": meetup,
-                        "votes": sum(s['count'] for s in models.votes)
-                    }]
-                }), 200
-        except ValueError:
-            vote = {
-                "user": userid,
-                "question": q_id,
-                "count": -1
-            }
-            models.votes.remove(vote)
-            return jsonify(
-                {
-                    "status": 200,
-                    "data": [{
-                        "msg": "vote removed",
-                        "title": title,
-                        "body": body,
-                        "meetup": meetup,
-                        "votes": sum(s['count'] for s in models.votes)
-                    }]
-                }), 200
-    else:
-        models.votes.append(upvote)
-        return jsonify(
-            {
-                "status": 201,
-                "data": [{
-                    "msg": "vote added successfully",
-                    "title": title,
-                    "body": body,
-                    "meetup": meetup,
-                    "votes": sum(s['count'] for s in models.votes)
-                }]
-            }
-        ), 201
+        return response, 201
 
 
-@downvote_q.route('/questions/<int:q_id>/downvote', methods=['PATCH'])
-@jwt_required
-def downvote_question(q_id):
-    # get a list of the question object with the matching question-id
-    # and retrieve the meetup info from it
-    try:
-        meetup = [q for q in models.questions if q['id'] == q_id][0]['meetup']
-        title = [q for q in models.questions if q['id'] == q_id][0]['title']
-        body = [q for q in models.questions if q['id'] == q_id][0]['body']
-    except IndexError:
-        return jsonify(
-            {
-                "status": 500,
-                "error": "error retrieving meetup"
-            }), 500
+class DownVote(Resource):
+    @jwt_required
+    def patch(self, q_id):
+        meetup = PostQuestionsModel.find_meetup_by_q_id(q_id)
+        title = PostQuestionsModel.find_title_by_q_id(q_id)
+        body = PostQuestionsModel.find_body_by_q_id(q_id)
+        user = get_jwt_identity()
+        voter = AuthModel.find_by_uid(user)
 
-    # get current user from jwt token
-    user = get_jwt_identity()
+        votes = VoteModel.save_downvote_to_db(voter, q_id)
 
-    # get a list of the user object with the matching email retrieved from get_jwt_identity()
-    # and retrieve the user id from it
-    try:
-        userid = [u for u in users if u['email'] == user][0]['id']
-    except IndexError:
-        return jsonify(
-            {
-                "status": 500,
-                "error": "error retrieving user"
-            }), 500
+        response = {
+            "status": 201,
+            "message": "vote added successfully",
+            "data": [{
+                "title": title,
+                "body": body,
+                "meetup": meetup,
+                "votes": votes
+            }]
+        }
 
-    downvote = {
-        "user": userid,
-        "question": q_id,
-        "count": -1
-    }
+        return response, 201
 
-    # check if user has already voted
-    # if they have, remove the record
-    # if not, append
-    if any(u['user'] == userid and u['question'] == q_id for u in models.votes):
-        try:
-            models.votes.remove(downvote)
-            return jsonify(
-                {
-                    "status": 200,
-                    "data": [{
-                        "msg": "vote removed",
-                        "title": title,
-                        "body": body,
-                        "meetup": meetup,
-                        "votes": sum(s['count'] for s in models.votes)
-                    }]
-                }), 200
-        except ValueError:
-            vote = {
-                "user": userid,
-                "question": q_id,
-                "count": 1
-            }
-            models.votes.remove(vote)
-            return jsonify(
-                {
-                    "status": 200,
-                    "data": [{
-                        "msg": "vote removed",
-                        "title": title,
-                        "body": body,
-                        "meetup": meetup,
-                        "votes": sum(s['count'] for s in models.votes)
-                    }]
-                }), 200
-    else:
-        models.votes.append(downvote)
-        return jsonify(
-            {
-                "status": 201,
-                "data": [{
-                    "msg": "vote added successfully",
-                    "title": title,
-                    "body": body,
-                    "meetup": meetup,
-                    "votes": sum(s['count'] for s in models.votes)
-                }]
-            }
-        ), 201

@@ -1,69 +1,39 @@
-from flask import request, abort, jsonify, Blueprint
+from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
-import datetime as date
-from api.v1.questions import models
-from api.v1.auth.models import users
-from api.v1.meetups.models import meetups
 
-answer_q = Blueprint('answer_q', __name__, url_prefix='/api/v1')
+from ..questions.models import PostQuestionsModel, AnswerQuestionsModel
+from ..auth.models import AuthModel
 
 
-@answer_q.route('/questions/<int:q_id>/answer', methods=['POST'])
-@jwt_required
-def answer_question(q_id):
+class AnswerQuestion(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("body",
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
 
-    try:
-        # check if the question exists
-        if not any(q['id'] == q_id for q in models.questions):
-            return jsonify(
-                {
-                    "status": 404,
-                    "error": "question with id {} does not exist".format(q_id)
-                }), 404
-
-        body = request.json['body']
-        meetup = [q for q in models.questions if q['id'] == q_id][0]['meetup']
-
-        try:
-            a_id = models.answers[-1]['id'] + 1
-        except IndexError:
-            a_id = 1
+    @jwt_required
+    def post(self, q_id):
+        data = AnswerQuestion.parser.parse_args()
+        body = data["body"]
 
         # get current user from jwt token
         user = get_jwt_identity()
+        creator = AuthModel.find_by_uid(user)
 
-        # get a list of the user object with the matching email retrieved from get_jwt_identity()
-        # and retrieve the user id from it
-        try:
-            userid = [u for u in users if u['email'] == user][0]['id']
-        except IndexError:
-            return jsonify(
-                {
-                    "status": 500,
-                    "error": "error retrieving user"
-                }), 500
+        meetup = PostQuestionsModel.find_meetup_by_q_id(q_id)
 
-        answer = {
-            "id": a_id,
-            "body": body,
-            "createdBy": userid,
-            "meetup": meetup,
-            "createdOn": date.datetime.now(),
-            "forQuestion": q_id
-        }
-        models.answers.append(answer)
-        return jsonify(
-            {
-                "status": 201,
-                "data": [{
-                    "id": a_id,
-                    "msg": "answer added successfully",
-                    "body": body,
-                    "user": userid,
-                    "meetup": meetup,
-                    "forQuestion": q_id
-                }]
-            }
-        ), 201
-    except (ValueError, KeyError, TypeError):
-        abort(400)
+        answer = AnswerQuestionsModel(body, creator, meetup, q_id)
+        answer.save_answer_to_db()
+
+        response = {
+            "status": 201,
+            "message": "answer submitted successfully",
+            "data": [{
+                "body": body,
+                "creator": creator,
+                "meetup": meetup,
+                "for_question": q_id
+            }]}
+
+        return response, 201
