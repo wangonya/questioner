@@ -21,6 +21,10 @@ class AdminProtectedError(HTTPException):
     pass
 
 
+class InvalidPasswordLengthError(HTTPException):
+    pass
+
+
 errors = {
     "UserAlreadyExistsError": {
         "message": "A user with that email already exists",
@@ -28,6 +32,10 @@ errors = {
     },
     "InvalidEmailFormatError": {
         "message": "Invalid email format",
+        "status": 400,
+    },
+    "InvalidPasswordLengthError": {
+        "message": "Invalid password length",
         "status": 400,
     },
     "UserLoginError": {
