@@ -54,7 +54,7 @@ def create_app(test_config=None):
     api.add_resource(Signup, '/auth/signup')
     api.add_resource(Login, '/auth/login')
     api.add_resource(Reset, '/auth/reset')
-    api.add_resource(Meetups, '/meetups')
+    api.add_resource(Meetups, '/meetups/upcoming')
     api.add_resource(GetSpecificMeetup, '/meetups/<int:m_id>')
     api.add_resource(GetAdminMeetups, '/admin/profile/<int:uid>')
     api.add_resource(Rsvp, '/meetups/<int:m_id>/rsvps')
