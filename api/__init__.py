@@ -9,7 +9,7 @@ from .error_handlers import errors
 from .v1.auth.sign_up import Signup
 from .v1.auth.log_in import Login
 from .v1.auth.reset import Reset
-from .v1.meetups.meetups import Meetups, GetSpecificMeetup, GetAdminMeetups
+from .v1.meetups.meetups import Meetups, GetSpecificMeetup, GetAdminMeetups, PostMeetups
 from .v1.meetups.rsvp import Rsvp
 from .v1.questions.post_questions import PostQuestion
 from .v1.questions.answer_question import AnswerQuestion
@@ -55,6 +55,7 @@ def create_app(test_config=None):
     api.add_resource(Login, '/auth/login')
     api.add_resource(Reset, '/auth/reset')
     api.add_resource(Meetups, '/meetups/upcoming')
+    api.add_resource(PostMeetups, '/meetups')
     api.add_resource(GetSpecificMeetup, '/meetups/<int:m_id>')
     api.add_resource(GetAdminMeetups, '/admin/profile/<int:uid>')
     api.add_resource(Rsvp, '/meetups/<int:m_id>/rsvps')
