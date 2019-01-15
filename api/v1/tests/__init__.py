@@ -3,6 +3,7 @@ import json
 from flask_jwt_extended import create_access_token
 import api
 
+from ..auth.models import AuthModel
 # manually push app context
 # to avoid working outside of application context
 ctx = api.create_app().test_request_context()
@@ -16,6 +17,12 @@ ctx.pop()
 def main():
     main = api.create_app()
     return main.test_client()
+
+
+@pytest.fixture
+def new_user():
+    user = AuthModel('fname', 'lname', 'kwangonya@gmail.com', '23432432', 'test_pass!')
+    return user
 
 
 def post_json(main, url, json_dict):
