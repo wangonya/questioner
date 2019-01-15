@@ -394,8 +394,32 @@ h1.auth-title {
 /* ==========================================================================
    Add answer // Question page
    ========================================================================== */
+#question-details {
+    box-shadow: 0 0 10px #e3e3e3;
+    min-width: 50%;
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#question-details #question {
+    box-shadow: 0 0 5px #e3e3e3;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#question-details #answer img {
+    width: 55px;
+}
+
+#comment-count {
+    padding-top: 20px;
+    color: #919A9F;
+}
+
 #answer {
-    margin-left: 100px;
+    margin-left: 20px;
 }
 
 .answer-body {
@@ -405,11 +429,13 @@ h1.auth-title {
 
 #author {
     color: #53e3a6;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .add-answer {
     padding-top: 30px;
-    margin-left: 120px;
 }
 
 .add-answer textarea {
