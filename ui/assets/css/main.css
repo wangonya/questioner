@@ -576,20 +576,19 @@ h1.auth-title {
 #new-meetup {
     margin: 20px auto;
     padding: 30px 25px;
-    border: 1px solid #c4c4c4;
-    max-width: 50%;
+    /* border: 1px solid #c4c4c4; */
+    max-width: 40%;
+    box-shadow: 0 0 10px #e3e3e3;
 }
 
 h1.new-title {
-    margin: -28px -25px 25px;
+    margin: -30px -25px 25px;
     padding: 15px 25px;
     line-height: 30px;
     font-size: 25px;
     font-weight: 300;
-    color: #adadad;
     text-align:center;
     background: #f7f7f7;
-
 }
 
 .new-input {
