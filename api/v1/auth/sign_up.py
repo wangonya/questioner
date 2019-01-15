@@ -27,8 +27,6 @@ class Signup(Resource):
                         help="This field cannot be left blank!")
     parser.add_argument("phonenumber",
                         type=str)
-    parser.add_argument("othername",
-                        type=str)
 
     @staticmethod
     def post():
