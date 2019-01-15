@@ -51,6 +51,7 @@ a:hover {
     background: #50a3a2;
     background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
     position: relative;
+    padding: 0 20px 0;
 }
 
 .nav > .nav-header {
