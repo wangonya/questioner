@@ -1,16 +1,23 @@
-from api.v1.tests import main, post_json
+import datetime
+
+from api.v1.tests import main, post_json, new_user
 
 
-def test_sign_up_valid(main):
+def test_sign_up_valid(main, new_user):
     test_data = {
-        "email": "kwangonya@gmail.com",
-        "password": "test_pass!",
         "firstname": "fname",
         "lastname": "lname",
-        "othername": "oname",
-        "phoneNumber": "878878786",
-        "isAdmin": False
+        "email": "kwangonya@gmail.com",
+        "phonenumber": "23432432",
+        "password": "test_pass!"
     }
+    assert isinstance(new_user.uid, int)
+    assert new_user.firstname == "fname"
+    assert new_user.lastname == "lname"
+    assert new_user.email == "kwangonya@gmail.com"
+    assert new_user.phonenumber == "23432432"
+    assert new_user.password != "test_pass!"
+    assert isinstance(new_user.registered, datetime.datetime)
     res = post_json(main, "/api/v1/auth/signup", test_data)
     assert res.status_code == 201
     assert b"user registered successfully" in res.data
@@ -22,9 +29,7 @@ def test_sign_up_invalid_email(main):
         "password": "test_pass!",
         "firstname": "fname",
         "lastname": "lname",
-        "othername": "oname",
-        "phoneNumber": "878878786",
-        "isAdmin": False
+        "phonenumber": "878878786"
     }
     res = post_json(main, "/api/v1/auth/signup", test_data)
     assert res.status_code == 400
@@ -37,9 +42,7 @@ def test_sign_up_invalid_password(main):
         "password": "test!",
         "firstname": "fname",
         "lastname": "lname",
-        "othername": "oname",
-        "phoneNumber": "878878786",
-        "isAdmin": False
+        "phonenumber": "878878786"
     }
     res = post_json(main, "/api/v1/auth/signup", test_data)
     assert res.status_code == 400
