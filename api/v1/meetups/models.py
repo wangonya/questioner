@@ -4,24 +4,7 @@ from ...error_handlers import DataIndexError
 
 
 class MeetupModel:
-    meetups = [
-        {
-            "id": 1,
-            "title": "sample meetup",
-            "location": "test location",
-            "happeningOn": "test date",
-            "tags": ["tag1", "tag2", "tag3"],
-            "creator": 1
-        },
-        {
-            "id": 2,
-            "title": "sample meetup2",
-            "location": "test location2",
-            "happeningOn": "test date2",
-            "tags": ["tag1", "tag2", "tag3"],
-            "creator": 1
-        }
-    ]
+    meetups = []
 
     def __init__(self, title, creator, location,
                  happening_on, tags, image):
@@ -40,7 +23,15 @@ class MeetupModel:
     @classmethod
     def find_by_m_id(cls, m_id):
         try:
-            meetup = [meetup for meetup in cls.meetups if meetup["id"] == m_id][0]
+            meetup = [meetup for meetup in cls.meetups if meetup.m_id == m_id][0]
+        except IndexError:
+            raise DataIndexError
+        return meetup
+
+    @classmethod
+    def find_title_by_m_id(cls, m_id):
+        try:
+            meetup = [meetup.title for meetup in cls.meetups if meetup.m_id == m_id][0]
         except IndexError:
             raise DataIndexError
         return meetup
@@ -48,7 +39,7 @@ class MeetupModel:
     @classmethod
     def find_admin_meetups(cls, uid):
         try:
-            meetup = [meetup for meetup in cls.meetups if meetup["creator"] == uid]
+            meetup = [meetup for meetup in cls.meetups if meetup.creator == uid]
         except IndexError:
             raise DataIndexError
         return meetup
