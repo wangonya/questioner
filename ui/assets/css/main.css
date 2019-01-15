@@ -51,6 +51,7 @@ a:hover {
     background: #50a3a2;
     background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
     position: relative;
+    padding: 0 20px 0;
 }
 
 .nav > .nav-header {
@@ -167,16 +168,16 @@ a:hover {
 .auth {
     margin: 20px auto;
     padding: 30px 25px;
-    border: 1px solid #c4c4c4;
+    box-shadow: 0 0 10px #e3e3e3;
+    max-width: 40%;
 }
 
 h1.auth-title {
-    margin: -28px -25px 25px;
+    margin: -30px -25px 25px;
     padding: 15px 25px;
     line-height: 30px;
     font-size: 25px;
     font-weight: 300;
-    color: #adadad;
     text-align:center;
     background: #f7f7f7;
 
@@ -393,8 +394,32 @@ h1.auth-title {
 /* ==========================================================================
    Add answer // Question page
    ========================================================================== */
+#question-details {
+    box-shadow: 0 0 10px #e3e3e3;
+    min-width: 50%;
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#question-details #question {
+    box-shadow: 0 0 5px #e3e3e3;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#question-details #answer img {
+    width: 55px;
+}
+
+#comment-count {
+    padding-top: 20px;
+    color: #919A9F;
+}
+
 #answer {
-    margin-left: 100px;
+    margin-left: 20px;
 }
 
 .answer-body {
@@ -404,11 +429,13 @@ h1.auth-title {
 
 #author {
     color: #53e3a6;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .add-answer {
     padding-top: 30px;
-    margin-left: 120px;
 }
 
 .add-answer textarea {
@@ -449,7 +476,8 @@ h1.auth-title {
    ========================================================================== */
 #profile-page {
     display: flex;
-    justify-content: space-between;
+    min-width: 70%;
+    justify-content: center;
 }
 
 .user-profile {
@@ -457,6 +485,7 @@ h1.auth-title {
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding-right: 60px;
 }
 
 .user-profile img {
@@ -475,6 +504,7 @@ h1.auth-title {
 .activity-feed {
     padding: 15px;
     list-style: none;
+    padding-right: 60px;
 }
 
 .activity-feed .feed-item {
@@ -521,7 +551,8 @@ h1.auth-title {
    ========================================================================== */
 #admin-page {
     display: flex;
-    justify-content: space-between;
+    min-width: 70%;
+    justify-content: center;
 }
 
 #admin-page i {
@@ -545,20 +576,19 @@ h1.auth-title {
 #new-meetup {
     margin: 20px auto;
     padding: 30px 25px;
-    border: 1px solid #c4c4c4;
-    max-width: 50%;
+    /* border: 1px solid #c4c4c4; */
+    max-width: 40%;
+    box-shadow: 0 0 10px #e3e3e3;
 }
 
 h1.new-title {
-    margin: -28px -25px 25px;
+    margin: -30px -25px 25px;
     padding: 15px 25px;
     line-height: 30px;
     font-size: 25px;
     font-weight: 300;
-    color: #adadad;
     text-align:center;
     background: #f7f7f7;
-
 }
 
 .new-input {
@@ -754,6 +784,32 @@ h1.new-title {
     #home .featured {
         grid-column-end: span 6;
         grid-row-end: span 1;
+    }
+}
+
+/* Auth pages
+   ========================================================================== */
+   @media (max-width: 700px) {
+    .auth {
+        max-width: 60%;
+    }
+}
+
+    @media (max-width: 500px) {
+    .auth {
+        max-width: 80%;
+    }
+}
+
+    @media (max-width: 400px) {
+    .auth {
+        max-width: 95%;
+    }
+}
+
+    @media (max-width: 300px) {
+    .auth {
+        max-width: 100%;
     }
 }
 
