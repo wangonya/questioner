@@ -7,16 +7,14 @@ from ...error_handlers import DataIndexError, AdminProtectedError, UserLoginErro
 class AuthModel:
     user_model = []
 
-    def __init__(self, firstname, lastname, othername,
-                 email, phonenumber, password):
+    def __init__(self, firstname, lastname, email, phonenumber, password):
         self.uid = len(AuthModel.user_model) + 1
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
         self.phonenumber = phonenumber
-        self.othername = othername
-        self.username = email.split("@")[0],
         self.password = generate_password_hash(password)
+        self.username = email.split("@")[0],
         self.isadmin = True
         self.registered = datetime.now()
 
