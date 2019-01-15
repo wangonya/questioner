@@ -4,6 +4,7 @@ from flask_jwt_extended import create_access_token
 import api
 
 from ..auth.models import AuthModel
+from ..meetups.models import MeetupModel, RsvpsModel
 # manually push app context
 # to avoid working outside of application context
 ctx = api.create_app().test_request_context()
@@ -23,6 +24,18 @@ def main():
 def new_user():
     user = AuthModel('fname', 'lname', 'kwangonya@gmail.com', '23432432', 'test_pass!')
     return user
+
+
+@pytest.fixture
+def new_meetup():
+    meetup = MeetupModel('sample meetup', 1, 'test location', 'test date', ["tag1", "tag2", "tag3"], "")
+    return meetup
+
+
+@pytest.fixture
+def new_rsvp():
+    rsvp = RsvpsModel('yes', 1, 1)
+    return rsvp
 
 
 def post_json(main, url, json_dict):
