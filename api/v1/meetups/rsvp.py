@@ -18,7 +18,7 @@ class Rsvp(Resource):
         status = data["status"]
         user = get_jwt_identity()
         userid = AuthModel.find_by_uid(user)
-        title = MeetupModel.find_by_m_id(m_id)
+        title = MeetupModel.find_title_by_m_id(m_id)
 
         rsvp = RsvpsModel(status, userid, m_id)
         rsvp.save_rsvp_to_db()
@@ -29,7 +29,7 @@ class Rsvp(Resource):
             "data": [{
                 "m_id": m_id,
                 "status": status,
-                "topic": title["title"]
+                "topic": title
                 }]
             }
 
