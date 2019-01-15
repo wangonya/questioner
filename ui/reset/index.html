@@ -27,13 +27,20 @@
             <h1 class="auth-title">Reset Password</h1>
             <p><small>Enter your email and we'll send you a reset link</small></p>
             <input type="email" class="auth-input" placeholder="Email Address" autofocus>
-            <input type="" value="Reset password" class="auth-button" onclick="location.href = '../';">
+            <a href="#open-modal"><input type="" value="Reset password" class="auth-button"></a>
             <div class="auth-more">
                 <p><a href="../signup/"><small>No account? Sign up</small></a></p>
                 <p><a href="../login/"><small>Go back to Log in</small></a></p>
             </div>
         </form>
     </div>
+
+    <div id="open-modal" class="modal-window">
+                <div>
+                    <a href="#" title="Close" class="modal-close">Close</a>
+                    <p>Password reset instructions have been sent to your email.</p>
+                </div>
+            </div>
 </div>
 <div class="footer">
     <p>Questioner 2019 by <a href="http://wangonya.com" target="_blank">wangonya</a></p>

@@ -337,6 +337,7 @@ h1.auth-title {
    ========================================================================== */
 #question {
     box-shadow: 0 0 10px #e3e3e3;
+    padding: 20px;
 }
 
 .flex {
@@ -345,35 +346,147 @@ h1.auth-title {
     margin-top: 10px;
 }
 
-.vote {
-    margin: 0 25px;
-    font-weight: bold;
-    color: #919A9F;
+.react {
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  border: 0;
+  font-size: .9rem;
+  transition: all .2s ease-in-out;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin: 10px;
 }
-.vote i {
-    transition: all 50ms ease;
+.upvote:hover {
+  color: #53e3a6;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.upvote:hover span {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+.upvote:active {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+.upvote span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #53e3a6;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+.upvote span:hover {
+  opacity: 1;
+}
+.upvote span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #53e3a6;
 }
 
-.vote .up i:hover {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-    color: #53e3a6;
+.downvote:hover {
+  color: #f0776c;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.downvote:hover span {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+.downvote:active {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+.downvote span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #f0776c;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+.downvote span:hover {
+  opacity: 1;
+}
+.downvote span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #f0776c;
 }
 
-.vote .down i:hover {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-    color: #f0776c;
+.comment:hover {
+  color: #53e3a6;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
-
-.votes {
-    margin-top: 3px;
+.comment:hover span {
+  opacity: 1;
+  transition: all .2s ease-in-out;
 }
-
-.up, .down {
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
+.comment:active {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+.comment span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #53e3a6;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+.comment span:hover {
+  opacity: 1;
+}
+.comment span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #53e3a6;
 }
 
 .profile {

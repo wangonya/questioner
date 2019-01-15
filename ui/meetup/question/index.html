@@ -38,21 +38,22 @@
 <div class="container">
     <div id="question-details">
             <div class="flex" id="question">
-                <!-- <div class="vote">
-                    <div class="up" onclick="upVote">
-                        <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="votes">23</div>
-                    <div class="down" onclick="downVote">
-                        <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
-                    </div>
-                </div> -->
                 <div class="profile">
                     <img src="../../assets/img/person_1.jpg" alt="author" />
                     <small id="author">Jane</small>
                 </div>
                 <div class="question-body">
                     <p>Where exactly will this meetup be?</p>
+                    <button class="react upvote">
+                        <i class='fa fa-thumbs-up'></i>
+                        Upvote
+                        <span id="upvotes">0</span>
+                    </button>
+                    <button class="react downvote">
+                        <i class='fa fa-thumbs-down'></i>
+                        Downvote
+                        <span id="downvotes">0</span>
+                    </button>
                 </div>
             </div>
 
