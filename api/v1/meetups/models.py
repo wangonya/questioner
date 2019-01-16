@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from ...error_handlers import DataIndexError
+from api.v1.utils.error_handlers import DataIndexError
 
 
 class MeetupModel:
