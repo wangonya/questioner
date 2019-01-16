@@ -2,7 +2,7 @@ import re
 
 from flask_restful import Resource, reqparse
 
-from ...error_handlers import DataIndexError, InvalidEmailFormatError
+from api.v1.utils.error_handlers import DataIndexError, InvalidEmailFormatError
 from ..auth.models import AuthModel
 
 
