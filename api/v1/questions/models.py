@@ -58,7 +58,7 @@ class PostQuestionsModel:
 
     @classmethod
     def find_duplicate_question(cls, title, meetup):
-        """check if the same creator has entered a meetup with the same title"""
+        """check if a similar question exists in the meetup"""
         return any(q for q in cls.questions if q.title == title and q.meetup == meetup)
 
 
@@ -66,16 +66,21 @@ class AnswerQuestionsModel:
     """model to handle answers data"""
     answers = []
 
-    def __init__(self, body, creator, meetup, for_question):
+    def __init__(self, body, creator, meetup, question):
         self.a_id = len(AnswerQuestionsModel.answers) + 1
         self.body = body
         self.creator = creator
         self.meetup = meetup
-        self.for_question: for_question
+        self.question = question
 
     def save_answer_to_db(self):
         """save entered answer to db"""
         AnswerQuestionsModel.answers.append(self)
+
+    @classmethod
+    def find_duplicate_answer(cls, body, question):
+        """check if a similar answer exists in the question"""
+        return any(a for a in cls.answers if a.body == body and a.question == question)
 
 
 class VoteModel:
