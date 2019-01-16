@@ -4,7 +4,7 @@ from flask import Flask, Blueprint
 from flask_jwt_extended import JWTManager
 from flask_restful import Api, Resource
 
-from .error_handlers import errors
+from api.v1.utils.error_handlers import errors
 
 from .v1.auth.sign_up import Signup
 from .v1.auth.log_in import Login
