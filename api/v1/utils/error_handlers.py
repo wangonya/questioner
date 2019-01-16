@@ -33,6 +33,10 @@ class InvalidRsvpStatusError(HTTPException):
     """handle invalid rsvp status"""
 
 
+class InvalidMeetupIdError(HTTPException):
+    """handle invalid meetup id"""
+
+
 errors = {
     "UserAlreadyExistsError": {
         "message": "A user with that email already exists",
@@ -66,4 +70,8 @@ errors = {
         "message": "Rsvp status can only be 'yes', 'no' or 'maybe'",
         "status": 400,
     },
+    "InvalidMeetupIdError": {
+        "message": "Meetup id in url does not match id in body",
+        "status": 400,
+    }
 }
