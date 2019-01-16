@@ -8,6 +8,7 @@ from ..utils.validators import QuestionValidators
 
 
 class PostQuestion(Resource):
+    """post question endpoint resource"""
     parser = reqparse.RequestParser()
     parser.add_argument("title",
                         type=str,
@@ -24,6 +25,7 @@ class PostQuestion(Resource):
 
     @jwt_required
     def post(self):
+        """do a POST on the questions endpoint"""
         data = PostQuestion.parser.parse_args()
         title = data["title"]
         body = data["body"]
