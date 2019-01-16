@@ -3,10 +3,12 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from ..meetups.models import MeetupModel
 from ..auth.models import AuthModel
-from ...error_handlers import AdminProtectedError
+from api.v1.utils.validators import MeetupValidators
+from api.v1.utils.error_handlers import AdminProtectedError
 
 
 class Meetups(Resource):
+    """upcoming meetups endpoint resource"""
     parser = reqparse.RequestParser()
     parser.add_argument("title",
                         type=str,
@@ -26,13 +28,16 @@ class Meetups(Resource):
 
     @staticmethod
     def get():
+        """do a GET to upcoming meetups endpoint"""
         return {"status": 200,
                 "data": MeetupModel.meetups}, 200
 
 
 class PostMeetups(Resource):
+    """post new meetup endpoint"""
     @jwt_required
     def post(self):
+        """do a POST to the meetups endpoint"""
         data = Meetups.parser.parse_args()
 
         # get current user from jwt token
@@ -47,6 +52,9 @@ class PostMeetups(Resource):
             happening_on = data["happening_on"]
             tags = data["tags"]
             image = data["image"]
+
+            # handle duplicates
+            MeetupValidators.check_duplicate_meetup(title, creator_id)
 
             meetup = MeetupModel(title, creator_id, location,
                                  happening_on, tags, image)

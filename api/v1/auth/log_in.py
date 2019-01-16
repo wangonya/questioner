@@ -1,13 +1,13 @@
-import re
-
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import create_access_token
 
-from ...error_handlers import UserLoginError, InvalidEmailFormatError
-from ..auth.models import AuthModel
+from api.v1.utils.validators import AuthValidators
+from api.v1.utils.error_handlers import UserLoginError
+from api.v1.auth.models import AuthModel
 
 
 class Login(Resource):
+    """login endpoint"""
     parser = reqparse.RequestParser()
     parser.add_argument("email",
                         type=str,
@@ -20,11 +20,11 @@ class Login(Resource):
 
     @staticmethod
     def post():
+        """do a POST to resource"""
         data = Login.parser.parse_args()
 
         # check that email is in a correct format
-        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
-            raise InvalidEmailFormatError
+        AuthValidators.check_email_format(data["email"])
 
         # verify password hash
         password = AuthModel.verify_hash(data["email"], data["password"])

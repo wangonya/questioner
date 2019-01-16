@@ -2,27 +2,39 @@ from werkzeug.exceptions import HTTPException
 
 
 class UserAlreadyExistsError(HTTPException):
-    pass
+    """handle duplicate user registration"""
 
 
 class InvalidEmailFormatError(HTTPException):
-    pass
+    """handle invalid format"""
 
 
 class UserLoginError(HTTPException):
-    pass
+    """hanle invalid login details"""
 
 
 class DataIndexError(HTTPException):
-    pass
+    """handle data not found errors"""
 
 
 class AdminProtectedError(HTTPException):
-    pass
+    """handle unauthorised access"""
 
 
 class InvalidPasswordLengthError(HTTPException):
-    pass
+    """handle password length during signup"""
+
+
+class DuplicateDataError(HTTPException):
+    """handle duplcate data entry"""
+
+
+class InvalidRsvpStatusError(HTTPException):
+    """handle invalid rsvp status"""
+
+
+class InvalidMeetupIdError(HTTPException):
+    """handle invalid meetup id"""
 
 
 errors = {
@@ -50,4 +62,16 @@ errors = {
         "message": "Only admins can access this route",
         "status": 401,
     },
+    "DuplicateDataError": {
+        "message": "The data entered already exists in the resource",
+        "status": 409,
+    },
+    "InvalidRsvpStatusError": {
+        "message": "Rsvp status can only be 'yes', 'no' or 'maybe'",
+        "status": 400,
+    },
+    "InvalidMeetupIdError": {
+        "message": "Meetup id in url does not match id in body",
+        "status": 400,
+    }
 }

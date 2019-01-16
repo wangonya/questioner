@@ -9,7 +9,7 @@ def test_post_question(main, new_question):
         "body": "sample question body",
         "meetup": 1
     }
-    res = post_json(main, '/api/v1/questions', test_data)
+    res = post_json(main, '/api/v1/meetups/1/questions', test_data)
     assert isinstance(new_question.q_id, int)
     assert new_question.title == "sample question"
     assert isinstance(new_question.creator, int)

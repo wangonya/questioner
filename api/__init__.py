@@ -4,7 +4,7 @@ from flask import Flask, Blueprint
 from flask_jwt_extended import JWTManager
 from flask_restful import Api, Resource
 
-from .error_handlers import errors
+from api.v1.utils.error_handlers import errors
 
 from .v1.auth.sign_up import Signup
 from .v1.auth.log_in import Login
@@ -59,7 +59,7 @@ def create_app(test_config=None):
     api.add_resource(GetSpecificMeetup, '/meetups/<int:m_id>')
     api.add_resource(GetAdminMeetups, '/admin/profile/<int:uid>')
     api.add_resource(Rsvp, '/meetups/<int:m_id>/rsvps')
-    api.add_resource(PostQuestion, '/questions')
+    api.add_resource(PostQuestion, '/meetups/<int:m_id>/questions')
     api.add_resource(AnswerQuestion, '/questions/<int:q_id>/answer')
     api.add_resource(Upvote, '/questions/<int:q_id>/upvote')
     api.add_resource(DownVote, '/questions/<int:q_id>/downvote')
