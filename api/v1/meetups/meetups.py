@@ -1,3 +1,5 @@
+import json
+
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -29,8 +31,9 @@ class Meetups(Resource):
     @staticmethod
     def get():
         """do a GET to upcoming meetups endpoint"""
+        meetups = MeetupModel.return_all_meetups()
         return {"status": 200,
-                "data": MeetupModel.meetups}, 200
+                "data": json.dumps(meetups, default=str)}, 200
 
 
 class PostMeetups(Resource):
@@ -82,7 +85,7 @@ class GetSpecificMeetup(Resource):
 
         response = {
             "status": 200,
-            "data": [meetup]
+            "data": [json.dumps(meetup, default=str)]
                 }
 
         return response, 200
@@ -99,7 +102,7 @@ class GetAdminMeetups(Resource):
 
             response = {
                 "status": 200,
-                "data": meetups
+                "data": json.dumps(meetups, default=str)
             }
 
             return response, 200
