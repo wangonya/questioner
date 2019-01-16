@@ -1,7 +1,7 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ...error_handlers import DataIndexError, AdminProtectedError, UserLoginError
+from api.v1.utils.error_handlers import DataIndexError, AdminProtectedError, UserLoginError
 
 
 class AuthModel:
