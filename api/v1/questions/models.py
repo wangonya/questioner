@@ -4,6 +4,7 @@ from api.v1.utils.error_handlers import DataIndexError
 
 
 class PostQuestionsModel:
+    """model to handle questions data"""
     questions = []
     
     def __init__(self, title, creator, body, meetup):
@@ -16,10 +17,12 @@ class PostQuestionsModel:
         self.votes = 0
 
     def save_question_to_db(self):
+        """save entered question data to db"""
         PostQuestionsModel.questions.append(self)
 
     @classmethod
     def find_by_q_id(cls, q_id):
+        """find required question from db using its id"""
         try:
             question = [question for question in cls.questions if question.q_id == q_id][0]
         except IndexError:
@@ -28,6 +31,7 @@ class PostQuestionsModel:
 
     @classmethod
     def find_meetup_by_q_id(cls, q_id):
+        """find required meetup from db using the question id"""
         try:
             meetup = [q.meetup for q in cls.questions if q.q_id == q_id][0]
         except IndexError:
@@ -36,6 +40,7 @@ class PostQuestionsModel:
 
     @classmethod
     def find_title_by_q_id(cls, q_id):
+        """find required question title from db using its id"""
         try:
             title = [q.title for q in cls.questions if q.q_id == q_id][0]
         except IndexError:
@@ -44,14 +49,21 @@ class PostQuestionsModel:
 
     @classmethod
     def find_body_by_q_id(cls, q_id):
+        """find required question body from db using its id"""
         try:
             body = [q.body for q in cls.questions if q.q_id == q_id][0]
         except IndexError:
             raise DataIndexError
         return body
 
+    @classmethod
+    def find_duplicate_question(cls, title, meetup):
+        """check if the same creator has entered a meetup with the same title"""
+        return any(q for q in cls.questions if q.title == title and q.meetup == meetup)
+
 
 class AnswerQuestionsModel:
+    """model to handle answers data"""
     answers = []
 
     def __init__(self, body, creator, meetup, for_question):
@@ -62,14 +74,17 @@ class AnswerQuestionsModel:
         self.for_question: for_question
 
     def save_answer_to_db(self):
+        """save entered answer to db"""
         AnswerQuestionsModel.answers.append(self)
 
 
 class VoteModel:
+    """model to handle votes data"""
     votes = []
 
     @classmethod
     def save_upvote_to_db(cls, voter, question):
+        """save entered vote to db"""
         upvote = {
             "user": voter,
             "question": question,
@@ -97,6 +112,7 @@ class VoteModel:
 
     @classmethod
     def save_downvote_to_db(cls, voter, question):
+        """save entered vote to db"""
         upvote = {
             "user": voter,
             "question": question,
