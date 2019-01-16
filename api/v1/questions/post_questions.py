@@ -24,7 +24,7 @@ class PostQuestion(Resource):
                         help="This field cannot be left blank!")
 
     @jwt_required
-    def post(self):
+    def post(self, m_id):
         """do a POST on the questions endpoint"""
         data = PostQuestion.parser.parse_args()
         title = data["title"]
@@ -39,6 +39,9 @@ class PostQuestion(Resource):
 
         # handle duplicates
         QuestionValidators.check_duplicate_question(title, meetup)
+
+        # make sure meetup id passed in url matches meetup id in body
+        QuestionValidators.check_meetup_id(meetup, m_id)
 
         question = PostQuestionsModel(title, creator, body, meetup)
         question.save_question_to_db()
