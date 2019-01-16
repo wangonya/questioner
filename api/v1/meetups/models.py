@@ -23,13 +23,18 @@ class MeetupModel:
         MeetupModel.meetups.append(self)
 
     @classmethod
+    def return_all_meetups(cls):
+        meetups = [meetup.__dict__ for meetup in cls.meetups]
+        return meetups
+
+    @classmethod
     def find_by_m_id(cls, m_id):
         """find required meetup from db using its id"""
         try:
             meetup = [meetup for meetup in cls.meetups if meetup.m_id == m_id][0]
         except IndexError:
             raise DataIndexError
-        return meetup
+        return vars(meetup)
 
     @classmethod
     def find_title_by_m_id(cls, m_id):
@@ -44,7 +49,7 @@ class MeetupModel:
     def find_admin_meetups(cls, uid):
         """find meetups created by a particular admin from db using the admin's id"""
         try:
-            meetup = [meetup for meetup in cls.meetups if meetup.creator == uid]
+            meetup = [meetup.__dict__ for meetup in cls.meetups if meetup.creator == uid][0]
         except IndexError:
             raise DataIndexError
         return meetup
