@@ -3,7 +3,7 @@ import re
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 
-from ...error_handlers import UserAlreadyExistsError, InvalidEmailFormatError, InvalidPasswordLengthError
+from api.v1.utils.error_handlers import UserAlreadyExistsError, InvalidEmailFormatError, InvalidPasswordLengthError
 from ..auth.models import AuthModel
 
 
