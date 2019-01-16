@@ -37,11 +37,11 @@ class PostQuestion(Resource):
 
         MeetupModel.find_by_m_id(meetup)
 
-        # handle duplicates
-        QuestionValidators.check_duplicate_question(title, meetup)
-
         # make sure meetup id passed in url matches meetup id in body
         QuestionValidators.check_meetup_id(meetup, m_id)
+
+        # handle duplicates
+        QuestionValidators.check_duplicate_question(title, meetup)
 
         question = PostQuestionsModel(title, creator, body, meetup)
         question.save_question_to_db()
