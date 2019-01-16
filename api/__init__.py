@@ -59,7 +59,7 @@ def create_app(test_config=None):
     api.add_resource(GetSpecificMeetup, '/meetups/<int:m_id>')
     api.add_resource(GetAdminMeetups, '/admin/profile/<int:uid>')
     api.add_resource(Rsvp, '/meetups/<int:m_id>/rsvps')
-    api.add_resource(PostQuestion, '/questions')
+    api.add_resource(PostQuestion, '/meetups/<int:m_id>/questions')
     api.add_resource(AnswerQuestion, '/questions/<int:q_id>/answer')
     api.add_resource(Upvote, '/questions/<int:q_id>/upvote')
     api.add_resource(DownVote, '/questions/<int:q_id>/downvote')
