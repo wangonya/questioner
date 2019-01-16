@@ -1,13 +1,12 @@
-import re
-
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 
-from api.v1.utils.error_handlers import UserAlreadyExistsError, InvalidEmailFormatError, InvalidPasswordLengthError
+from api.v1.utils.validators import AuthValidators
 from ..auth.models import AuthModel
 
 
 class Signup(Resource):
+    """signup endpoint resource"""
     parser = reqparse.RequestParser()
     parser.add_argument("firstname",
                         type=str,
@@ -30,20 +29,18 @@ class Signup(Resource):
 
     @staticmethod
     def post():
+        """do a POST to signup endpoint"""
         data = Signup.parser.parse_args()
 
         # check if email already exists to avoid duplicates
-        if AuthModel.find_by_email(data["email"]):
-            raise UserAlreadyExistsError
+        AuthValidators.check_email_exists(data["email"])
 
         # check that email is in a correct format
-        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]):
-            raise InvalidEmailFormatError
+        AuthValidators.check_email_format(data["email"])
 
         # check that password has appropriate length
-        if 6 > len(data["password"]) or 12 < len(data["password"]):
-            raise InvalidPasswordLengthError
-        
+        AuthValidators.check_password_length(data["password"])
+
         user = AuthModel(**data)
         user.save_to_db()
 
