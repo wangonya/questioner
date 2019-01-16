@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from ..meetups.models import MeetupModel
 from ..auth.models import AuthModel
-from ...error_handlers import AdminProtectedError
+from api.v1.utils.error_handlers import AdminProtectedError
 
 
 class Meetups(Resource):
