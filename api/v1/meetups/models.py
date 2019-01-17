@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from api.v1.utils.error_handlers import DataIndexError
+from api.v1.utils.error_handlers import DataIndexError, DuplicateDataError
 
 
 class MeetupModel:
@@ -73,3 +73,11 @@ class RsvpsModel:
     def save_rsvp_to_db(self):
         """save entered rsvp data to db"""
         RsvpsModel.rsvps.append(self)
+
+    @classmethod
+    def check_duplicate_rsvp(cls, userid, m_id):
+        """check if user has already rsvp'd
+        if they have, remove the record"""
+        if any(r.uid == userid and r.m_id == m_id for r in cls.rsvps):
+            rsvp_index = [i for i, r in enumerate(cls.rsvps) if r.uid == userid and r.m_id == m_id][0]
+            cls.rsvps.pop(rsvp_index)
