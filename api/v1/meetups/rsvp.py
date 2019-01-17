@@ -13,7 +13,6 @@ class Rsvp(Resource):
                         required=True,
                         help="This field cannot be left blank!")
 
-    # TODO: CHECK FOR AND HANDLE DUPLICATES
     @jwt_required
     def post(self, m_id):
         """do POST on rsvp endpoint"""
@@ -25,6 +24,9 @@ class Rsvp(Resource):
 
         # validate status
         RsvpValidators.check_proper_rsvp(status)
+
+        # check duplicate -- return update if true
+        RsvpsModel.check_duplicate_rsvp(userid, m_id)
 
         rsvp = RsvpsModel(status, userid, m_id)
         rsvp.save_rsvp_to_db()

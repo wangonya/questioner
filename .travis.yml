@@ -6,7 +6,7 @@ install:
 
 before_script: cd api
 script:
-  - pytest --cov=v1
+  - pytest --cov-config .coveragerc --cov=v1
 
 after_success:
   - coveralls
