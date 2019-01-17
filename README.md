@@ -1,6 +1,7 @@
 # questioner
 [![Build Status](https://travis-ci.org/wangonya/questioner.svg?branch=develop)](https://travis-ci.org/wangonya/questioner)
 [![Coverage Status](https://coveralls.io/repos/github/wangonya/questioner/badge.svg?branch=develop)](https://coveralls.io/github/wangonya/questioner?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d8c9e9b932819c21cee8/maintainability)](https://codeclimate.com/github/wangonya/questioner/maintainability)
 
 Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log.
 
@@ -13,7 +14,7 @@ Crowd-source questions for a meetup. Questioner helps the meetup organizer prior
 |POST /meetups*   |Create new meetup   |/api/v1/meetups   |
 |GET /meetups/< meetup-id >   |Fetch specific meetup record   |/api/v1/meetups/< meetup-id >   |
 |GET /meetups/upcoming   |Get all upcoming meetups   |/api/v1/meetups/upcoming   |
-|POST /questions   |Post a new question on a meetup   |/api/v1//questions   |
+|POST meetups/< meetup-id >/questions   |Post a new question on a meetup   |/api/v1/meetups/< meetup-id >/questions   |
 |PATCH /questions/< question-id >/upvote   |Upvote a specific question   |/api/v1/questions/< question-id >/upvote   |
 |PATCH /questions/< question-id >/downvote   |Downvote a specific question   |/api/v1/questions/< question-id >/downvote   |
 |POST /meetups/< meetup-id >/rsvps   |Respond to meetup RSVP   |/api/v1/meetups/< meetup-id >/rsvps   |
