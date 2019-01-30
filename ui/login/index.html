@@ -1,43 +1,72 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Questioner | Log in</title>
     <meta name="description" content="Crowd-source questions for a meetup." />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <link rel="stylesheet" href="../assets/css/main.css" />
-</head>
+  </head>
 
-<body>
-<div class="nav">
-    <div class="nav-header">
+  <body>
+    <div id="msg-err"></div>
+    <div id="msg-ok"></div>
+    <div id="loading"><span class="spinner"></span></div>
+    <div class="nav">
+      <div class="nav-header">
         <div class="nav-title">
-            <a href="../"><h3>Questioner</h3></a>
+          <a href="../"><h3>Questioner</h3></a>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="container">
-    <div id="auth">
-        <form class="auth">
-            <h1 class="auth-title">Log in</h1>
-            <input type="text" class="auth-input" placeholder="Email Adress" autofocus>
-            <input type="password" class="auth-input" placeholder="Password">
-            <input type="" value="Log in" class="auth-button" onclick="location.href = '../profile';">
-            <div class="auth-more">
-                <p><a href="../signup/"><small>No account? Sign up</small></a></p>
-                <p><a href="../reset/"><small>Forgot password? Reset</small></a></p>
-            </div>
+    <div class="container">
+      <div id="auth">
+        <form class="auth" id="login_form">
+          <h1 class="auth-title">Log in</h1>
+          <input
+            type="text"
+            class="auth-input"
+            placeholder="Email Adress"
+            autofocus
+            name="email"
+            id="email"
+          />
+          <input
+            type="password"
+            class="auth-input"
+            placeholder="Password"
+            name="password"
+            id="password"
+          />
+          <input
+            type=""
+            value="Log in"
+            class="auth-button"
+            onclick="validate()"
+          />
+          <div class="auth-more">
+            <p>
+              <a href="../signup/"><small>No account? Sign up</small></a>
+            </p>
+            <p>
+              <a href="../reset/"><small>Forgot password? Reset</small></a>
+            </p>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-<div class="footer">
-    <p>Questioner 2019 by <a href="http://wangonya.com" target="_blank">wangonya</a></p>
-</div>
-<script src="../assets/js/main.js"></script>
-</body>
+    <div class="footer">
+      <p>
+        Questioner 2019 by
+        <a href="http://wangonya.com" target="_blank">wangonya</a>
+      </p>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="login.js"></script>
+  </body>
 </html>
