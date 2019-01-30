@@ -1,44 +1,40 @@
 /* ==========================================================================
    Base styles
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    color: #212121;
-    font-size: 1em;
-    line-height: 1.4;
-    min-height: 100%;
-    position: relative;
+  color: #212121;
+  font-size: 1em;
+  line-height: 1.4;
+  min-height: 100%;
+  position: relative;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0 0 70px;
+  font-family: "Roboto", sans-serif;
+  margin: 0 0 70px;
 }
 
 .container {
-    padding: 30px;
-    display: grid;
-}
-
-.title {
-
+  padding: 30px;
+  display: grid;
 }
 
 a {
-    color: #53e3a6;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #53e3a6;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #f0776c;
+  color: #f0776c;
 }
 
 /* ==========================================================================
@@ -46,53 +42,52 @@ a:hover {
    ========================================================================== */
 
 .nav {
-    height: 60px;
-    width: 100%;
-    background: #50a3a2;
-    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-    position: relative;
-    padding: 0 20px 0;
+  height: 60px;
+  width: 100%;
+  background: #50a3a2;
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  position: relative;
+  padding: 0 20px 0;
 }
 
 .nav > .nav-header {
-    display: inline;
+  display: inline;
 }
 
 .nav > .nav-header > .nav-title {
-    display: inline-block;
-    font-size: 22px;
-    padding: 10px 10px 10px 10px;
+  display: inline-block;
+  font-size: 22px;
+  padding: 10px 10px 10px 10px;
 }
 
 .nav-title a {
-    color: #fff;
+  color: #fff;
 }
 
 .nav > .nav-btn {
-    display: none;
+  display: none;
 }
 
 .nav > .nav-links {
-    display: inline;
-    float: right;
-    font-size: 18px;
+  display: inline;
+  float: right;
+  font-size: 18px;
 }
 
 .nav > .nav-links > a {
-    display: inline-block;
-    padding: 13px 10px 13px 10px;
-    text-decoration: none;
-    color: #efefef;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
 }
 
 .nav > .nav-links > a:hover {
-    color: #f0776c;
+  color: #f0776c;
 }
 
 .nav > #nav-check {
-    display: none;
+  display: none;
 }
-
 
 /* ==========================================================================
    Home page
@@ -103,247 +98,243 @@ a:hover {
 
 /* Masonry grid */
 .meetups {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, auto));
-    grid-gap: 10px;
-    grid-auto-rows: minmax(180px, auto);
-    grid-auto-flow: dense;
-    padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+  grid-gap: 10px;
+  grid-auto-rows: minmax(180px, auto);
+  grid-auto-flow: dense;
+  padding-top: 10px;
 }
 
 #home .grid-item {
-    padding: 1rem;
-    background: linear-gradient(to bottom, rgba(33,33,33,.0) 0%, black 100%);
-    border-radius: 5px;
-    transition: box-shadow .3s;
-    position: relative;
-    overflow:hidden;
+  padding: 1rem;
+  background: linear-gradient(to bottom, rgba(33, 33, 33, 0) 0%, black 100%);
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-#home .grid-item > img{
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    z-index:-1;
-    top: 0;
-    left: 0;
-    transition: all 1s ease;
+#home .grid-item > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: all 1s ease;
 }
 
-#home .grid-item:hover img{
-    transform: scale(1.2);
+#home .grid-item:hover img {
+  transform: scale(1.2);
 }
 
 #home .main {
-    grid-column-end: span 6;
-    grid-row-end: span 2;
+  grid-column-end: span 6;
+  grid-row-end: span 2;
 }
 
 #home .featured {
-    grid-column-end: span 3;
-    grid-row-end: span 1;
+  grid-column-end: span 3;
+  grid-row-end: span 1;
 }
 
 .text-block {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-
 
 /* ==========================================================================
    Sign up and Log in
    ========================================================================== */
 #auth {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, auto));
-    grid-auto-flow: dense;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+  grid-auto-flow: dense;
+  padding: 10px;
 }
 
 .auth {
-    margin: 20px auto;
-    padding: 30px 25px;
-    box-shadow: 0 0 10px #e3e3e3;
-    max-width: 40%;
+  margin: 20px auto;
+  padding: 30px 25px;
+  box-shadow: 0 0 10px #e3e3e3;
+  max-width: 40%;
 }
 
 h1.auth-title {
-    margin: -30px -25px 25px;
-    padding: 15px 25px;
-    line-height: 30px;
-    font-size: 25px;
-    font-weight: 300;
-    text-align:center;
-    background: #f7f7f7;
-
+  margin: -30px -25px 25px;
+  padding: 15px 25px;
+  line-height: 30px;
+  font-size: 25px;
+  font-weight: 300;
+  text-align: center;
+  background: #f7f7f7;
 }
 
 .auth-input {
-    width: 100%;
-    height: 50px;
-    margin-bottom: 25px;
-    padding-left:10px;
-    font-size: 15px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .auth-input:focus {
-    border-color:#6e8095;
-    outline: none;
+  border-color: #6e8095;
+  outline: none;
 }
 
 .auth-button {
-    width: 100%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
 }
 
-.auth-more
-{
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 0;
+.auth-more {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
-
 
 /* ==========================================================================
    Meetup info
    ========================================================================== */
 #meetup {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, auto));
-    grid-gap: 10px;
-    grid-auto-rows: minmax(180px, auto);
-    grid-auto-flow: dense;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+  grid-gap: 10px;
+  grid-auto-rows: minmax(180px, auto);
+  grid-auto-flow: dense;
 }
 
 #meetup .grid-item {
-    padding: 1rem;
-    background: linear-gradient(to bottom, rgba(33,33,33,.0) 0%, black 100%);
-    border-radius: 5px;
-    transition: box-shadow .3s;
-    position: relative;
-    overflow:hidden;
+  padding: 1rem;
+  background: linear-gradient(to bottom, rgba(33, 33, 33, 0) 0%, black 100%);
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-#meetup .grid-item > img{
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    z-index:-1;
-    top: 0;
-    left: 0;
+#meetup .grid-item > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 #meetup .main {
-    grid-column-end: span 6;
-    grid-row-end: span 2;
+  grid-column-end: span 6;
+  grid-row-end: span 2;
 }
 
 #meetup .details {
-    background: white;
-    grid-column-end: span 4;
+  background: white;
+  grid-column-end: span 4;
 }
 
 #meetup .aside {
-    background: white;
-    grid-column-end: span 2;
-    grid-row-end: span 1;
-    color: #919A9F;
+  background: white;
+  grid-column-end: span 2;
+  grid-row-end: span 1;
+  color: #919a9f;
 }
 
 #meetup .aside img {
-    border-radius: 50%;
-    float: left;
-    width: 70px;
-    height: 70px;
-    margin-right: 15px;
+  border-radius: 50%;
+  float: left;
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
 }
 
 .cta-going {
-    width: 100%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
-    margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 10px;
 }
 
 /* Meetup page ask question
    ========================================================================== */
 #meetup .ask {
-    background: white;
+  background: white;
 }
 
 .ask textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }
 
 .ask textarea:focus {
-    outline: none;
-    border-width: 0;
-    box-shadow: 0 0 5px #53e3a6;
+  outline: none;
+  border-width: 0;
+  box-shadow: 0 0 5px #53e3a6;
 }
 
 .ask button {
-    width: 30%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
-    margin-top: 10px;
+  width: 30%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 10px;
 }
 
 #question:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Meetup page questions
    ========================================================================== */
 #question {
-    box-shadow: 0 0 10px #e3e3e3;
-    padding: 20px;
+  box-shadow: 0 0 10px #e3e3e3;
+  padding: 20px;
 }
 
 .flex {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .react {
@@ -351,8 +342,8 @@ h1.auth-title {
   width: 90px;
   height: 40px;
   border: 0;
-  font-size: .9rem;
-  transition: all .2s ease-in-out;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
   background-color: white;
   cursor: pointer;
   border-radius: 6px;
@@ -363,15 +354,15 @@ h1.auth-title {
 .upvote:hover {
   color: #53e3a6;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
 .upvote:hover span {
   opacity: 1;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .upvote:active {
   -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  transform: scale(1.4);
 }
 .upvote span {
   position: absolute;
@@ -384,7 +375,7 @@ h1.auth-title {
   padding: 10px 0;
   border-radius: 100px;
   opacity: 0;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .upvote span:hover {
   opacity: 1;
@@ -406,15 +397,15 @@ h1.auth-title {
 .downvote:hover {
   color: #f0776c;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
 .downvote:hover span {
   opacity: 1;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .downvote:active {
   -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  transform: scale(1.4);
 }
 .downvote span {
   position: absolute;
@@ -427,7 +418,7 @@ h1.auth-title {
   padding: 10px 0;
   border-radius: 100px;
   opacity: 0;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .downvote span:hover {
   opacity: 1;
@@ -449,15 +440,15 @@ h1.auth-title {
 .comment:hover {
   color: #53e3a6;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
 .comment:hover span {
   opacity: 1;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .comment:active {
   -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  transform: scale(1.4);
 }
 .comment span {
   position: absolute;
@@ -470,7 +461,7 @@ h1.auth-title {
   padding: 10px 0;
   border-radius: 100px;
   opacity: 0;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .comment span:hover {
   opacity: 1;
@@ -490,356 +481,487 @@ h1.auth-title {
 }
 
 .profile {
-    margin: 8px 10px 0 0;
-    text-align: center;
+  margin: 8px 10px 0 0;
+  text-align: center;
 }
 .profile img {
-    width: 75px;
-    border-radius: 50%;
+  width: 75px;
+  border-radius: 50%;
 }
 
 .question-body {
-    margin-top: 5px;
-    padding: 0 15px;
+  margin-top: 5px;
+  padding: 0 15px;
 }
-
 
 /* ==========================================================================
    Add answer // Question page
    ========================================================================== */
 #question-details {
-    box-shadow: 0 0 10px #e3e3e3;
-    min-width: 50%;
-    padding: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  box-shadow: 0 0 10px #e3e3e3;
+  min-width: 50%;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #question-details #question {
-    box-shadow: 0 0 5px #e3e3e3;
-    padding: 20px;
-    border-radius: 20px;
+  box-shadow: 0 0 5px #e3e3e3;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 #question-details #answer img {
-    width: 55px;
+  width: 55px;
 }
 
 #comment-count {
-    padding-top: 20px;
-    color: #919A9F;
+  padding-top: 20px;
+  color: #919a9f;
 }
 
 #answer {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .answer-body {
-    margin-top: 5px;
-    padding: 0 15px;
+  margin-top: 5px;
+  padding: 0 15px;
 }
 
 #author {
-    color: #53e3a6;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  color: #53e3a6;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .add-answer {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 .add-answer textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }
 
 .add-answer textarea:focus {
-    outline: none;
-    border-width: 0;
-    box-shadow: 0 0 5px #53e3a6;
+  outline: none;
+  border-width: 0;
+  box-shadow: 0 0 5px #53e3a6;
 }
 
 .add-answer button {
-    width: 30%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
-    margin-top: 10px;
+  width: 30%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 10px;
 }
-
 
 /* ==========================================================================
    User Profile
    ========================================================================== */
 #profile-page {
-    display: flex;
-    min-width: 70%;
-    justify-content: center;
+  display: flex;
+  min-width: 70%;
+  justify-content: center;
 }
 
 .user-profile {
-    color: #919A9F;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-right: 60px;
+  color: #919a9f;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 60px;
 }
 
 .user-profile img {
-    border-radius: 50%;
-    float: left;
-    width: 100px;
-    height: 100px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+  border-radius: 50%;
+  float: left;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }
 
 /* Activity feed
    ========================================================================== */
 .activity-feed {
-    padding: 15px;
-    list-style: none;
-    padding-right: 60px;
+  padding: 15px;
+  list-style: none;
+  padding-right: 60px;
 }
 
 .activity-feed .feed-item {
-    position: relative;
-    padding-bottom: 20px;
-    padding-left: 30px;
-    border-left: 2px solid #e4e8eb;
+  position: relative;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  border-left: 2px solid #e4e8eb;
 }
 
 .activity-feed .feed-item:last-child {
-    border-color: transparent;
+  border-color: transparent;
 }
 
 .activity-feed .feed-item::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -6px;
-    width: 10px;
-    height: 10px;
-    border-radius: 6px;
-    background: #fff;
-    border: 1px solid #f0776c;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #f0776c;
 }
 
 .activity-feed .feed-item .date {
-    display: block;
-    position: relative;
-    top: -5px;
-    color: #8c96a3;
-    text-transform: uppercase;
-    font-size: 13px;
+  display: block;
+  position: relative;
+  top: -5px;
+  color: #8c96a3;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 
 .activity-feed .feed-item .text {
-    position: relative;
-    top: -3px;
+  position: relative;
+  top: -3px;
 }
-
 
 /* ==========================================================================
    Admin page
    ========================================================================== */
 #admin-page {
-    display: flex;
-    min-width: 70%;
-    justify-content: center;
+  display: flex;
+  min-width: 70%;
+  justify-content: center;
 }
 
 #admin-page i {
-    padding: 10px;
+  padding: 10px;
 }
 
 #admin-page i:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .fa-plus {
-    color: #53e3a6;
+  color: #53e3a6;
 }
 
 .fa-trash-alt {
-    color: #f0776c;
+  color: #f0776c;
 }
 
 /* New Meetup
    ========================================================================== */
 #new-meetup {
-    margin: 20px auto;
-    padding: 30px 25px;
-    /* border: 1px solid #c4c4c4; */
-    max-width: 40%;
-    box-shadow: 0 0 10px #e3e3e3;
+  margin: 20px auto;
+  padding: 30px 25px;
+  /* border: 1px solid #c4c4c4; */
+  max-width: 40%;
+  box-shadow: 0 0 10px #e3e3e3;
 }
 
 h1.new-title {
-    margin: -30px -25px 25px;
-    padding: 15px 25px;
-    line-height: 30px;
-    font-size: 25px;
-    font-weight: 300;
-    text-align:center;
-    background: #f7f7f7;
+  margin: -30px -25px 25px;
+  padding: 15px 25px;
+  line-height: 30px;
+  font-size: 25px;
+  font-weight: 300;
+  text-align: center;
+  background: #f7f7f7;
 }
 
 .new-input {
-    width: 100%;
-    height: 50px;
-    margin-bottom: 25px;
-    padding-left:10px;
-    font-size: 15px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #new-meetup-form textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    font-size: 15px;
-    resize: none;
-    border: 1px solid #ccc;
-    font-family: Roboto, serif;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 15px;
+  resize: none;
+  border: 1px solid #ccc;
+  font-family: Roboto, serif;
 }
 
 .new-input:focus {
-    border-color:#6e8095;
-    outline: none;
+  border-color: #6e8095;
+  outline: none;
 }
 
 #new-meetup-form textarea:focus {
-    border-color:#6e8095;
-    outline: none;
+  border-color: #6e8095;
+  outline: none;
 }
 
 .new-button {
-    width: 100%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
 }
 
-.cancel
-{
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 0;
+.cancel {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
 /* Delete Meetup
    ========================================================================== */
 .modal-window {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.3);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
 }
 .modal-window:target {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 .modal-window > div {
-    width: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    padding: 2em;
-    background: #ffffff;
-    color: #f0776c;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+  color: #f0776c;
 }
 .modal-window header {
-    font-weight: bold;
+  font-weight: bold;
 }
 .modal-window h1 {
-    font-size: 150%;
-    margin: 0 0 15px;
-    color: #333333;
+  font-size: 150%;
+  margin: 0 0 15px;
+  color: #333333;
 }
 
 .modal-close {
-    color: #aaa;
-    line-height: 50px;
-    font-size: 80%;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-    width: 70px;
-    text-decoration: none;
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
 }
 .modal-close:hover {
-    color: #53e3a6;
+  color: #53e3a6;
 }
 
 .modal-button {
-    width: 100%;
-    height: 50px;
-    padding: 0;
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    background: #f0776c;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    outline:0;
-    margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #f0776c;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 10px;
 }
 
+/* ==========================================================================
+   Top bar message
+   ========================================================================== */
+#msg-err {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #f0776c;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 15px;
+  position: fixed;
+  z-index: 1;
+  left: 38%;
+  top: 30px;
+}
+
+#msg-err.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  animation: fadein 0.5s, fadeout 0.5s 3.5s;
+}
+
+#msg-ok {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #53e3a6;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 15px;
+  position: fixed;
+  z-index: 1;
+  left: 38%;
+  top: 30px;
+}
+
+#msg-ok.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  animation: fadein 0.5s, fadeout 0.5s 3.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Loader
+   ========================================================================== */
+#loading {
+  visibility: hidden;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #f0776c;
+  border-radius: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: spin 1s infinite linear;
+  z-index: 999;
+}
+
+#loading:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 998;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: #919A9F;
-    text-align: center;
-    position: absolute;
-    height: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #919a9f;
+  text-align: center;
+  position: absolute;
+  height: 50px;
 }
-
 
 /* ==========================================================================
    Responsiveness
@@ -847,157 +969,157 @@ h1.new-title {
 
 /* Nav
    ========================================================================== */
-@media (max-width:600px) {
-    .nav > .nav-btn {
-        display: inline-block;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .nav > .nav-btn > label {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        padding: 13px;
-    }
-    .nav > .nav-btn > label > span {
-        display: block;
-        width: 25px;
-        height: 10px;
-        border-top: 2px solid #eee;
-    }
-    .nav > .nav-links {
-        position: absolute;
-        display: block;
-        width: 100%;
-        background-color: #333;
-        height: 0;
-        transition: all 0.3s ease-in;
-        overflow-y: hidden;
-        top: 50px;
-        left: 0;
-        z-index: 1;
-    }
-    .nav > .nav-links > a {
-        display: block;
-        width: 100%;
-    }
-    .nav > #nav-check:not(:checked) + .nav-links {
-        height: 0;
-    }
-    .nav > #nav-check:checked + .nav-links {
-        height: calc(100vh - 50px);
-        overflow-y: auto;
-    }
+@media (max-width: 600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0;
+    z-index: 1;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) + .nav-links {
+    height: 0;
+  }
+  .nav > #nav-check:checked + .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
 }
 
 /* Home
    ========================================================================== */
 @media (max-width: 800px) {
-    #home .featured {
-        grid-column-end: span 6;
-        grid-row-end: span 1;
-    }
+  #home .featured {
+    grid-column-end: span 6;
+    grid-row-end: span 1;
+  }
 }
 
 /* Auth pages
    ========================================================================== */
-   @media (max-width: 700px) {
-    .auth {
-        max-width: 60%;
-    }
+@media (max-width: 700px) {
+  .auth {
+    max-width: 60%;
+  }
 }
 
-    @media (max-width: 500px) {
-    .auth {
-        max-width: 80%;
-    }
+@media (max-width: 500px) {
+  .auth {
+    max-width: 80%;
+  }
 }
 
-    @media (max-width: 400px) {
-    .auth {
-        max-width: 95%;
-    }
+@media (max-width: 400px) {
+  .auth {
+    max-width: 95%;
+  }
 }
 
-    @media (max-width: 300px) {
-    .auth {
-        max-width: 100%;
-    }
+@media (max-width: 300px) {
+  .auth {
+    max-width: 100%;
+  }
 }
 
 /* Meetup info
    ========================================================================== */
 @media (max-width: 800px) {
-    #meetup .aside {
-        grid-column-end: span 6;
-        grid-row-end: span 1;
-    }
+  #meetup .aside {
+    grid-column-end: span 6;
+    grid-row-end: span 1;
+  }
 }
 
 @media (max-width: 500px) {
-    .ask button {
-        width: 100%;
-    }
+  .ask button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-    .flex {
-        flex-flow: row wrap;
-    }
+  .flex {
+    flex-flow: row wrap;
+  }
 
-    .profile img {
-        width: 45px;
-        vertical-align: top;
-    }
+  .profile img {
+    width: 45px;
+    vertical-align: top;
+  }
 
-    #answer {
-        margin-left: 10px;
-    }
+  #answer {
+    margin-left: 10px;
+  }
 
-    .add-answer {
-        padding-top: 30px;
-        margin-left: 12px;
-    }
+  .add-answer {
+    padding-top: 30px;
+    margin-left: 12px;
+  }
 }
 
 /* Profile page
    ========================================================================== */
 @media (max-width: 600px) {
-    #profile-page {
-        display: flex;
-        flex-flow:column nowrap;
-    }
+  #profile-page {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 
 /* New meetup page
    ========================================================================== */
 @media (max-width: 700px) {
-    #new-meetup {
-        max-width: 80%;
-    }
+  #new-meetup {
+    max-width: 80%;
+  }
 }
 
 @media (max-width: 600px) {
-    #new-meetup {
-        max-width: 90%;
-    }
+  #new-meetup {
+    max-width: 90%;
+  }
 }
 
 @media (max-width: 500px) {
-    #new-meetup {
-        max-width: 100%;
-    }
+  #new-meetup {
+    max-width: 100%;
+  }
 }
 
 /* Delete meetup
    ========================================================================== */
 @media (max-width: 700px) {
-    #admin-page {
-        flex-flow: row wrap;
-    }
+  #admin-page {
+    flex-flow: row wrap;
+  }
 
-    .modal-window > div {
-        width: 80%;
-    }
+  .modal-window > div {
+    width: 80%;
+  }
 }
