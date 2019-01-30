@@ -11,7 +11,7 @@ function validate() {
 
   if (fname.value.length < 4) {
     msgErr.className = "show";
-    setTimeout(function() {
+    setTimeout(() => {
       msgErr.className = msgErr.className.replace("show", "");
     }, 4000);
     msgErr.innerHTML = "";
@@ -22,7 +22,7 @@ function validate() {
 
   if (lname.value.length < 4) {
     msgErr.className = "show";
-    setTimeout(function() {
+    setTimeout(() => {
       msgErr.className = msgErr.className.replace("show", "");
     }, 4000);
     msgErr.innerHTML = "";
@@ -33,7 +33,7 @@ function validate() {
 
   if (email.value.length < 4) {
     msgErr.className = "show";
-    setTimeout(function() {
+    setTimeout(() => {
       msgErr.className = msgErr.className.replace("show", "");
     }, 4000);
     msgErr.innerHTML = "";
@@ -45,7 +45,7 @@ function validate() {
     false
   ) {
     msgErr.className = "show";
-    setTimeout(function() {
+    setTimeout(() => {
       msgErr.className = msgErr.className.replace("show", "");
     }, 4000);
     msgErr.innerHTML = "";
@@ -56,7 +56,7 @@ function validate() {
 
   if (password.value.length < 6) {
     msgErr.className = "show";
-    setTimeout(function() {
+    setTimeout(() => {
       msgErr.className = msgErr.className.replace("show", "");
     }, 4000);
     msgErr.innerHTML = "";
@@ -72,7 +72,7 @@ function register() {
   const form = new FormData(myForm);
   const url = "https://questioner2.herokuapp.com/api/v2/auth/signup";
   loading.className = "show";
-  setTimeout(function() {
+  setTimeout(() => {
     loading.className = loading.className.replace("show", "");
   }, 15000);
   fetch(url, {
@@ -87,7 +87,7 @@ function register() {
         window.sessionStorage.accessToken = data.data[0].access_token;
       } else {
         msgErr.className = "show";
-        setTimeout(function() {
+        setTimeout(() => {
           msgErr.className = msgErr.className.replace("show", "");
         }, 4000);
         msgErr.innerHTML = data.message;
