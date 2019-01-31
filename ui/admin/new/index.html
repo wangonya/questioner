@@ -1,64 +1,74 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>Questioner | New Meetup</title>
     <meta name="description" content="Crowd-source questions for a meetup." />
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
 </head>
 
 <body>
-<div class="nav">
-    <div class="nav-header">
-        <div class="nav-title">
-            <a href="../../"><h3>Questioner</h3></a>
+    <div id="msg-err"></div>
+    <div id="msg-ok"></div>
+    <div id="loading"><span class="spinner"></span></div>
+    <div class="nav">
+        <div class="nav-header">
+            <div class="nav-title">
+                <a href="../../">
+                    <h3>Questioner</h3>
+                </a>
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span> <span></span> <span></span>
+            </label>
+        </div>
+        <input type="checkbox" id="nav-check" />
+        <div class="nav-links">
+            <a href="../../profile/">User profile</a>
+            <a href="../../admin/">Admin profile</a>
+            <a href="../../login/">Log in</a>
+            <a href="../../signup/">Sign up</a>
+        </div>
+        <div class="nav-links" id="profile"></div>
+    </div>
+
+    <div class="container">
+
+        <div id="new-meetup">
+            <form name="new-meetup-form" id="new-meetup-form">
+                <h1 class="new-title">New meetup</h1>
+                <label for="meetup-title"></label><input type="text" id="title" name="title" class="new-input"
+                    placeholder="Meetup title" autofocus>
+                <label for="meetup-tags"></label><input type="text" id="tags" name="tags" class="new-input" placeholder="Tags: separated by commas">
+                <label for="meetup-venue"></label><input type="text" id="location" name="location" class="new-input"
+                    placeholder="Venue">
+                <label for="date"></label><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                    id="date" class="new-input" placeholder="Date" name="happening_on">
+                <label for="meetup-details"></label><textarea name="details" id="details" placeholder="More details..."></textarea>
+                <label for="image"></label><input type="text" name="image" id="image" placeholder="Shortened image url - less than 50 characters" class="new-input">
+                <input value="Create meetup" class="new-button" onclick="validate()">
+                <div class="cancel">
+                    <p><a href="../"><small>Cancel</small></a></p>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="nav-btn">
-        <label for="nav-check">
-            <span></span> <span></span> <span></span>
-        </label>
     </div>
-    <input type="checkbox" id="nav-check" />
-    <div class="nav-links">
-        <a href="../../profile/">User profile</a> 
-        <a href="../../admin/">Admin profile</a> 
-        <a href="../../login/">Log in</a> 
-        <a href="../../signup/">Sign up</a>
+    <div class="footer">
+        <p>
+            Questioner 2019 by
+            <a href="http://wangonya.com" target="_blank">wangonya</a>
+        </p>
     </div>
-    <div class="nav-links" id="profile"></div>
-</div>
-
-<div class="container">
-
-    <div id="new-meetup">
-        <form name="new-meetup-form" id="new-meetup-form">
-            <h1 class="new-title">New meetup</h1>
-            <label for="meetup-title"></label><input type="text" id="meetup-title" name="meetup-title" class="new-input" placeholder="Meetup title" autofocus>
-            <label for="meetup-tags"></label><input type="text" id="meetup-tags" name="meetup-tags" class="new-input" placeholder="Tags: separated by commas">
-            <label for="meetup-venue"></label><input type="text" id="meetup-venue" name="meetup-venue" class="new-input" placeholder="Venue">
-            <label for="date"></label><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" class="new-input" placeholder="Date">
-            <label for="meetup-details"></label><textarea name="meetup-details" id="meetup-details" placeholder="More details..."></textarea>
-            <input type="submit" value="Create meetup" class="new-button">
-            <div class="cancel">
-                <p><a href="../"><small>Cancel</small></a></p>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-<div class="footer">
-    <p>
-        Questioner 2019 by
-        <a href="http://wangonya.com" target="_blank">wangonya</a>
-    </p>
-</div>
-<script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="new.js"></script>
 </body>
+
 </html>
