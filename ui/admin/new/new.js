@@ -1,7 +1,4 @@
 const myForm = document.getElementById("new-meetup-form");
-const msgOk = document.getElementById("msg-ok");
-const msgErr = document.getElementById("msg-err");
-const loading = document.getElementById("loading");
 
 function validate() {
   const title = document.getElementById("title");

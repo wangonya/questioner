@@ -1,7 +1,4 @@
 const myForm = document.getElementById("login_form");
-const msgOk = document.getElementById("msg-ok");
-const msgErr = document.getElementById("msg-err");
-const loading = document.getElementById("loading");
 const user = document.getElementById("user");
 const asked = document.getElementById("asked");
 const answered = document.getElementById("answered");
