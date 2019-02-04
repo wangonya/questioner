@@ -13,6 +13,9 @@
   </head>
 
   <body>
+    <div id="msg-err"></div>
+    <div id="msg-ok"></div>
+    <div id="loading"><span class="spinner"></span></div>
     <div class="nav">
       <div class="nav-header">
         <div class="nav-title">
@@ -26,59 +29,28 @@
       </div>
       <input type="checkbox" id="nav-check" />
       <div class="nav-links">
-        <a href="profile/">User profile</a> 
-        <a href="admin/">Admin profile</a> 
-        <a href="login/">Log in</a> 
+        <a href="profile/">User profile</a>
+        <a href="admin/">Admin profile</a>
+        <a href="login/">Log in</a>
         <a href="signup/">Sign up</a>
       </div>
     </div>
 
     <div class="container">
       <div id="home">
-          <h2 class="title">Upcoming Meetups</h2>
-          <div class="meetups">
-              <div class="grid-item main">
-                  <img src="assets/img/image_4.jpg" alt="meetup image">
-                  <div class="text-block">
-                      <a href="meetup/"><h2>Main Meetup</h2></a>
-                      <small>20/02/2019</small>
-                      <p>This is a main meetup and will be featured at the top of the upcoming meetups page</p>
-                  </div>
-              </div>
-              <div class="grid-item featured">
-                  <img src="assets/img/img_1.jpg" alt="meetup image">
-                  <div class="text-block">
-                      <a href="meetup/"><h4>Featured Meetup</h4></a>
-                      <small>12/01/2019</small>
-                  </div>
-              </div>
-              <div class="grid-item featured">
-                  <img src="assets/img/image_8.jpg" alt="meetup image">
-                  <div class="text-block">
-                      <a href="meetup/"><h4>Featured Meetup</h4></a>
-                      <small>12/01/2019</small>
-                  </div>
-              </div>
-              <div class="grid-item featured">
-                  <img src="assets/img/image_9.jpg" alt="meetup image">
-                  <div class="text-block">
-                      <a href="meetup/"><h4>Featured Meetup</h4></a>
-                      <small>12/01/2019</small>
-                  </div>
-              </div>
-              <div class="grid-item featured">
-                  <img src="assets/img/img_2.jpg" alt="meetup image">
-                  <div class="text-block">
-                      <a href="meetup/"><h4>Featured Meetup</h4></a>
-                      <small>12/01/2019</small>
-                  </div>
-              </div>
-          </div>
+        <h2 class="title">Upcoming Meetups</h2>
+        <div class="meetups" id="featured"></div>
       </div>
     </div>
     <div class="footer">
-        <p>Questioner 2019 by <a href="http://wangonya.com" target="_blank">wangonya</a></p>
+      <p>
+        Questioner 2019 by
+        <a href="http://wangonya.com" target="_blank">wangonya</a>
+      </p>
     </div>
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+      window.onload = getUpcomingMeetups;
+    </script>
   </body>
 </html>
