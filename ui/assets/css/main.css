@@ -293,16 +293,16 @@ h1.auth-title {
   height: 150px;
   padding: 12px 20px;
   box-sizing: border-box;
-  border-radius: 4px;
-  background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .ask textarea:focus {
+  border-color: #6e8095;
   outline: none;
-  border-width: 0;
-  box-shadow: 0 0 5px #53e3a6;
 }
 
 .ask button {
