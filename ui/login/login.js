@@ -43,8 +43,8 @@ function validate() {
 
 function login() {
   const form = new FormData(myForm);
-  // const url = "https://questioner2.herokuapp.com/api/v2/auth/login";
-  const url = "http://127.0.0.1:5000/api/v2/auth/login";
+  const url = "https://questioner2.herokuapp.com/api/v2/auth/login";
+  // const url = "http://127.0.0.1:5000/api/v2/auth/login";
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
