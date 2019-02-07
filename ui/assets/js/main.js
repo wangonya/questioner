@@ -6,7 +6,8 @@ const featured = document.getElementById("featured");
 
 // load upcoming meetups on home page
 function getUpcomingMeetups() {
-  const url = "http://127.0.0.1:5000/api/v2/meetups/upcoming";
+  const url = "https://questioner2.herokuapp.com/api/v2/meetups/upcoming";
+  // const url = "http://127.0.0.1:5000/api/v2/meetups/upcoming";
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -22,7 +23,9 @@ function getUpcomingMeetups() {
         featured.innerHTML = `<div class="grid-item main">
             <img src="${main_meetup.image}" alt="meetup image" />
             <div class="text-block">
-              <a href="meetup/"><h2>${main_meetup.title}</h2></a>
+              <a href="javascript:goToSpecificMeetup(${main_meetup.id})"><h2>${
+          main_meetup.title
+        }</h2></a>
               <small>${main_meetup.happening_on}</small>
               <br />
               <p>
@@ -31,11 +34,11 @@ function getUpcomingMeetups() {
             </div>
           </div>`;
 
-        meetups.forEach(({ title, happening_on, tags, image }) => {
+        meetups.forEach(({ title, happening_on, id, image }) => {
           featured.innerHTML += `<div class="grid-item featured">
             <img src="${image}" alt="meetup image" />
             <div class="text-block">
-              <a href="meetup/"><h4>${title}</h4></a>
+              <a href="javascript:goToSpecificMeetup(${id})"><h4>${title}</h4></a>
               <small>${happening_on}</small>
             </div>
           </div>`;
@@ -48,4 +51,8 @@ function getUpcomingMeetups() {
         msgErr.innerHTML = data.message;
       }
     });
+}
+function goToSpecificMeetup(id) {
+  window.location.replace("meetup/");
+  window.sessionStorage.m_id = id;
 }

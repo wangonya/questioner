@@ -10,10 +10,18 @@
     />
 
     <link rel="stylesheet" href="../assets/css/main.css" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
+    <div id="msg-err"></div>
+    <div id="msg-ok"></div>
+    <div id="loading"><span class="spinner"></span></div>
     <div class="nav">
       <div class="nav-header">
         <div class="nav-title">
@@ -27,91 +35,16 @@
       </div>
       <input type="checkbox" id="nav-check" />
       <div class="nav-links">
-        <a href="../profile/">User profile</a> 
-        <a href="../admin/">Admin profile</a> 
-        <a href="../login/">Log in</a> 
+        <a href="../profile/">User profile</a>
+        <a href="../admin/">Admin profile</a>
+        <a href="../login/">Log in</a>
         <a href="../signup/">Sign up</a>
       </div>
-        <div class="nav-links" id="profile"></div>
+      <div class="nav-links" id="profile"></div>
     </div>
 
     <div class="container">
-      <div id="meetup">
-          <div class="grid-item main header">
-              <img src="../assets/img/image_4.jpg" alt="meetup image">
-              <div class="text-block">
-                  <h2>Main Meetup</h2>
-                  <small>12/01/2019</small>
-                  <button class="cta-going" onclick="">I'm going!</button>
-              </div>
-          </div>
-          <div class="grid-item details">
-              <h3>Details</h3>
-              <p>This is a main meetup featured at the top of the upcoming meetups page.</p>
-
-              <br>
-
-              <h3>Any Questions?</h3>
-              <div class="grid-item ask">
-                  <form>
-                      <textarea placeholder="Your question..."></textarea>
-                      <button onclick="">Ask</button>
-                  </form>
-              </div>
-
-              <div class="flex" id="question">
-                  <div class="profile">
-                      <img src="../assets/img/person_1.jpg" alt="host" />
-                  </div>
-                  <div class="question-body">
-                      <p>Where exactly will this meetup be?</p>
-                        <button class="react upvote">
-                            <i class='fa fa-thumbs-up'></i>
-                            Upvote
-                            <span id="upvotes">0</span>
-                        </button>
-                        <button class="react downvote">
-                            <i class='fa fa-thumbs-down'></i>
-                            Downvote
-                            <span id="downvotes">0</span>
-                        </button>
-                        <button class="react comment" onclick="location.href = 'question/';">
-                            <i class='fa fa-comment'></i>
-                            Comment
-                            <span id="comments">2</span>
-                        </button>
-                  </div>
-              </div>
-              <div class="flex" id="question">
-                  <div class="profile">
-                      <img src="../assets/img/person_1.jpg" alt="host" />
-                  </div>
-                  <div class="question-body">
-                      <p>Will lunch be provided?</p>
-                      <button class="react upvote">
-                            <i class='fa fa-thumbs-up'></i>
-                            Upvote
-                            <span id="upvotes">0</span>
-                        </button>
-                        <button class="react downvote">
-                            <i class='fa fa-thumbs-down'></i>
-                            Downvote
-                            <span id="downvotes">0</span>
-                        </button>
-                        <button class="react comment" onclick="location.href = 'question/';">
-                            <i class='fa fa-comment'></i>
-                            Comment
-                            <span id="comments">2</span>
-                        </button>
-                  </div>
-              </div>
-              <div class="flex down"></div>
-          </div>
-          <div class="grid-item aside">
-              <p><img src="../assets/img/person_1.jpg" alt="host">Hosted by <span id="host">Jane Doe</span></p>
-              <p>From <a href="https://andela.com/" target="_blank">Andela Kenya</a></p>
-          </div>
-      </div>
+      <div id="meetup"></div>
     </div>
     <div class="footer">
       <p>
@@ -120,5 +53,9 @@
       </p>
     </div>
     <script src="../assets/js/main.js"></script>
+    <script src="meetup.js"></script>
+    <script type="text/javascript">
+      window.onload = getMeetup;
+    </script>
   </body>
 </html>
