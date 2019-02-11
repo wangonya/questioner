@@ -16,11 +16,11 @@ function getMeetup() {
     .then(data => {
       loading.className = loading.className.replace("show", "");
       if (data.status === 200) {
-        let meetup = data.data;
+        let meetup = data.data[0];
         meetup_info.innerHTML = `<div class="grid-item main header">
             <img src="${meetup.image}" alt="meetup image" />
             <div class="text-block">
-              <a href="meetup/"><h2>${meetup.title}</h2></a>
+              <a href="#"><h2>${meetup.title}</h2></a>
               <small>${meetup.happening_on}</small>
               <br />
               <button class="cta-going" onclick="">I'm going!</button>
@@ -145,12 +145,12 @@ function validate() {
 function postQuestion() {
   const myForm = document.getElementById("ask_form");
   const form = new FormData(myForm);
-  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
-    window.sessionStorage.m_id
-  }/questions`;
-  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
   //   window.sessionStorage.m_id
   // }/questions`;
+  const url = `http://127.0.0.1:5000/api/v2/meetups/${
+    window.sessionStorage.m_id
+  }/questions`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
