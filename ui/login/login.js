@@ -56,7 +56,10 @@ function login() {
     .then(response => response.json())
     .then(data => {
       loading.className = loading.className.replace("show", "");
-      if (data.status === 200) {
+      if (data.status === 200 && data.data[0].is_admin) {
+        window.location.replace("../admin");
+        window.sessionStorage.accessToken = data.data[0].access_token;
+      } else if (data.status === 200 && !data.is_admin) {
         window.location.replace("../profile");
         window.sessionStorage.accessToken = data.data[0].access_token;
       } else {
