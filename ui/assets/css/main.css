@@ -335,6 +335,7 @@ h1.auth-title {
   display: flex;
   align-items: center;
   margin-top: 10px;
+  grid-column-end: span 3;
 }
 
 .react {
