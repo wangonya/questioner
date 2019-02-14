@@ -47,7 +47,7 @@ function getMeetup() {
                   </form>
               </div>`;
 
-        questions.forEach(({ q_title, comments }) => {
+        questions.forEach(({ q_title, comments, q_id }) => {
           if (q_title) {
             meetup_info.innerHTML += `<div class="flex" id="question">
                   <div class="profile">
@@ -55,12 +55,12 @@ function getMeetup() {
                   </div>
                   <div class="question-body">
                       <p>${q_title}</p>
-                        <button class="react upvote">
+                        <button class="react upvote" onclick="upvote(${q_id})">
                             <i class='fa fa-thumbs-up'></i>
                             Upvote
                             <span id="upvotes">+1</span>
                         </button>
-                        <button class="react downvote">
+                        <button class="react downvote" onclick="downvote(${q_id})">
                             <i class='fa fa-thumbs-down'></i>
                             Downvote
                             <span id="downvotes">-1</span>
@@ -76,9 +76,6 @@ function getMeetup() {
           </div>`;
           }
         });
-
-        // append to the element's content
-        meetup_info.innerHTML += ``;
       } else {
         msgErr.className = "show";
         setTimeout(() => {
@@ -134,6 +131,72 @@ function postQuestion() {
   fetch(url, {
     method: "POST",
     body: form,
+    headers: new Headers({
+      Authorization: `Bearer ${sessionStorage.accessToken}`
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      loading.className = loading.className.replace("show", "");
+      if (data.status === 201) {
+        msgOk.className = "show";
+        setTimeout(() => {
+          msgOk.className = msgOk.className.replace("show", "");
+        }, 4000);
+        msgOk.innerHTML = "";
+        msgOk.innerHTML = data.message;
+      } else {
+        msgErr.className = "show";
+        setTimeout(() => {
+          msgErr.className = msgErr.className.replace("show", "");
+        }, 4000);
+        msgErr.innerHTML = data.message;
+      }
+    });
+}
+
+function upvote(id) {
+  const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/upvote`;
+  // const url = `http://127.0.0.1:5000/api/v2/questions/${id}/upvote`;
+  loading.className = "show";
+  setTimeout(() => {
+    loading.className = loading.className.replace("show", "");
+  }, 15000);
+  fetch(url, {
+    method: "PATCH",
+    headers: new Headers({
+      Authorization: `Bearer ${sessionStorage.accessToken}`
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      loading.className = loading.className.replace("show", "");
+      if (data.status === 201) {
+        msgOk.className = "show";
+        setTimeout(() => {
+          msgOk.className = msgOk.className.replace("show", "");
+        }, 4000);
+        msgOk.innerHTML = "";
+        msgOk.innerHTML = data.message;
+      } else {
+        msgErr.className = "show";
+        setTimeout(() => {
+          msgErr.className = msgErr.className.replace("show", "");
+        }, 4000);
+        msgErr.innerHTML = data.message;
+      }
+    });
+}
+
+function downvote(id) {
+  const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/downvote`;
+  // const url = `http://127.0.0.1:5000/api/v2/questions/${id}/downvote`;
+  loading.className = "show";
+  setTimeout(() => {
+    loading.className = loading.className.replace("show", "");
+  }, 15000);
+  fetch(url, {
+    method: "PATCH",
     headers: new Headers({
       Authorization: `Bearer ${sessionStorage.accessToken}`
     })
