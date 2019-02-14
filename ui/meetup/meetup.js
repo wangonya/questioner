@@ -1,12 +1,12 @@
 const meetup_info = document.getElementById("meetup");
 
 function getMeetup() {
-  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
-  //     window.sessionStorage.m_id
-  // }`;
-  const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
     window.sessionStorage.m_id
   }`;
+  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  //   window.sessionStorage.m_id
+  // }`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -17,6 +17,7 @@ function getMeetup() {
       loading.className = loading.className.replace("show", "");
       if (data.status === 200) {
         let meetup = data.data[0];
+        let questions = data.data;
         meetup_info.innerHTML = `<div class="grid-item main header">
             <img src="${meetup.image}" alt="meetup image" />
             <div class="text-block">
@@ -44,65 +45,40 @@ function getMeetup() {
                       <textarea placeholder="Your question..." name="body" id="body"></textarea>
                       <button onclick="event.preventDefault(); validate();">Ask</button>
                   </form>
-              </div>
+              </div>`;
 
-              <div class="flex" id="question">
+        questions.forEach(({ q_title, comments }) => {
+          if (q_title) {
+            meetup_info.innerHTML += `<div class="flex" id="question">
                   <div class="profile">
-                      <img src="../assets/img/person_1.jpg" alt="host" />
+                      <img src="http://i.pravatar.cc/300" alt="profile-image" />
                   </div>
                   <div class="question-body">
-                      <p>Where exactly will this meetup be?</p>
+                      <p>${q_title}</p>
                         <button class="react upvote">
                             <i class='fa fa-thumbs-up'></i>
                             Upvote
-                            <span id="upvotes">0</span>
+                            <span id="upvotes">+1</span>
                         </button>
                         <button class="react downvote">
                             <i class='fa fa-thumbs-down'></i>
                             Downvote
-                            <span id="downvotes">0</span>
+                            <span id="downvotes">-1</span>
                         </button>
                         <button class="react comment" onclick="location.href = 'question/';">
                             <i class='fa fa-comment'></i>
                             Comment
-                            <span id="comments">2</span>
-                        </button>
-                  </div>
-              </div>
-              <div class="flex" id="question">
-                  <div class="profile">
-                      <img src="../assets/img/person_1.jpg" alt="host" />
-                  </div>
-                  <div class="question-body">
-                      <p>Will lunch be provided?</p>
-                      <button class="react upvote">
-                            <i class='fa fa-thumbs-up'></i>
-                            Upvote
-                            <span id="upvotes">0</span>
-                        </button>
-                        <button class="react downvote">
-                            <i class='fa fa-thumbs-down'></i>
-                            Downvote
-                            <span id="downvotes">0</span>
-                        </button>
-                        <button class="react comment" onclick="location.href = 'question/';">
-                            <i class='fa fa-comment'></i>
-                            Comment
-                            <span id="comments">2</span>
+                            <span id="comments">${comments}</span>
                         </button>
                   </div>
               </div>
               <div class="flex down"></div>
-          </div>
-           <div class="grid-item aside">
-          <p>
-            <img src="../assets/img/person_1.jpg" alt="host" />Hosted by
-            <span id="host">Jane Doe</span>
-          </p>
-          <p>
-            From <a href="https://andela.com/" target="_blank">Andela Kenya</a>
-          </p>
-        </div>`;
+          </div>`;
+          }
+        });
+
+        // append to the element's content
+        meetup_info.innerHTML += ``;
       } else {
         msgErr.className = "show";
         setTimeout(() => {
@@ -145,12 +121,12 @@ function validate() {
 function postQuestion() {
   const myForm = document.getElementById("ask_form");
   const form = new FormData(myForm);
-  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
-  //   window.sessionStorage.m_id
-  // }/questions`;
-  const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
     window.sessionStorage.m_id
   }/questions`;
+  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  //   window.sessionStorage.m_id
+  // }/questions`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
