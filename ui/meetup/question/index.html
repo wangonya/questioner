@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    <div id="msg-err"></div>
+    <div id="msg-ok"></div>
+    <div id="loading"><span class="spinner"></span></div>
 <div class="nav">
     <div class="nav-header">
         <div class="nav-title">
@@ -37,51 +40,13 @@
 
 <div class="container">
     <div id="question-details">
-            <div class="flex" id="question">
-                <div class="profile">
-                    <img src="../../assets/img/person_1.jpg" alt="author" />
-                    <small id="author">Jane</small>
-                </div>
-                <div class="question-body">
-                    <p>Where exactly will this meetup be?</p>
-                    <button class="react upvote">
-                        <i class='fa fa-thumbs-up'></i>
-                        Upvote
-                        <span id="upvotes">0</span>
-                    </button>
-                    <button class="react downvote">
-                        <i class='fa fa-thumbs-down'></i>
-                        Downvote
-                        <span id="downvotes">0</span>
-                    </button>
-                </div>
-            </div>
-
-            <div id="comment-count">2 comments</div>
-            <div class="flex" id="answer">
-                <div class="profile">
-                    <img src="../../assets/img/person_1.jpg" alt="author" />
-                    <small id="author">Mercy</small>
-                </div>
-                <div class="answer-body">
-                    <p>At Andela offices, behind TRM</p>
-                </div>
-            </div>
-        <div class="flex" id="answer">
-            <div class="profile">
-                <img src="../../assets/img/person_1.jpg" alt="author" />
-                <small id="author">Cathy</small>
-            </div>
-            <div class="answer-body">
-                <p>At Andela main hq</p>
-            </div>
-        </div>
-
+            <div id="main_q"></div>
+            <div id="q_answers"></div>
         <div class="grid-item add-answer">
             <h3>Add your answer</h3>
-            <form>
-                <textarea placeholder="Your answer..."></textarea>
-                <button onclick="">Answer</button>
+            <form id="answer_form">
+                <textarea placeholder="Your answer..." id="answer_body" name="body"></textarea>
+                <button onclick="event.preventDefault(); validate()">Answer</button>
             </form>
         </div>
 
@@ -96,5 +61,9 @@
     </p>
 </div>
 <script src="../../assets/js/main.js"></script>
+<script src="question.js"></script>
+<script type="text/javascript">
+    window.onload = getQuestion;
+</script>
 </body>
 </html>
