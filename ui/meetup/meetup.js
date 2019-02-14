@@ -1,12 +1,12 @@
 const meetup_info = document.getElementById("meetup");
 
 function getMeetup() {
-  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
-  //   window.sessionStorage.m_id
-  // }`;
-  const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
     window.sessionStorage.m_id
   }`;
+  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  //   window.sessionStorage.m_id
+  // }`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -79,7 +79,7 @@ function getMeetup() {
                             Downvote
                             <span id="downvotes">-1</span>
                         </button>
-                        <button class="react comment" onclick="location.href = 'question/';">
+                        <button class="react comment" onclick="goToSpecificQuestion(${q_id})">
                             <i class='fa fa-comment'></i>
                             Comment
                             <span id="comments">${comments}</span>
@@ -236,8 +236,8 @@ function downvote(id) {
 }
 
 function rsvp(id, res) {
-  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${id}/rsvps`;
-  const url = `http://127.0.0.1:5000/api/v2/meetups/${id}/rsvps`;
+  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${id}/rsvps`;
+  // const url = `http://127.0.0.1:5000/api/v2/meetups/${id}/rsvps`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -268,4 +268,9 @@ function rsvp(id, res) {
         msgErr.innerHTML = data.message;
       }
     });
+}
+
+function goToSpecificQuestion(id) {
+  window.location.replace("question/");
+  window.sessionStorage.q_id = id;
 }
