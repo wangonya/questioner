@@ -1,12 +1,12 @@
 const meetup_info = document.getElementById("meetup");
 
 function getMeetup() {
-  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
-    window.sessionStorage.m_id
-  }`;
-  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
+  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
   //   window.sessionStorage.m_id
   // }`;
+  const url = `http://127.0.0.1:5000/api/v2/meetups/${
+    window.sessionStorage.m_id
+  }`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -24,7 +24,21 @@ function getMeetup() {
               <a href="#"><h2>${meetup.title}</h2></a>
               <small>${meetup.happening_on}</small>
               <br />
-              <button class="cta-going" onclick="">I'm going!</button>
+              <br />
+              <h3>Going?
+                <button class="react yes" onclick="rsvp(${meetup.id}, 'yes')">
+                  <i class="far fa-smile fa-2x"></i>
+                  <span>Yes</span>
+              </button>
+              <button class="react maybe" onclick="rsvp(${meetup.id}, 'maybe')">
+                  <i class="far fa-meh fa-2x"></i>
+                  <span>Maybe</span>
+              </button>
+              <button class="react no" onclick="rsvp(${meetup.id}, 'no')">
+                  <i class="far fa-frown fa-2x"></i>
+                  <span>No</span>
+              </button>
+              </h3>
             </div>
           </div>
           
@@ -205,6 +219,41 @@ function downvote(id) {
     .then(data => {
       loading.className = loading.className.replace("show", "");
       if (data.status === 201) {
+        msgOk.className = "show";
+        setTimeout(() => {
+          msgOk.className = msgOk.className.replace("show", "");
+        }, 4000);
+        msgOk.innerHTML = "";
+        msgOk.innerHTML = data.message;
+      } else {
+        msgErr.className = "show";
+        setTimeout(() => {
+          msgErr.className = msgErr.className.replace("show", "");
+        }, 4000);
+        msgErr.innerHTML = data.message;
+      }
+    });
+}
+
+function rsvp(id, res) {
+  // const url = `https://questioner2.herokuapp.com/api/v2/meetups/${id}/rsvps`;
+  const url = `http://127.0.0.1:5000/api/v2/meetups/${id}/rsvps`;
+  loading.className = "show";
+  setTimeout(() => {
+    loading.className = loading.className.replace("show", "");
+  }, 15000);
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify({ status: res }),
+    headers: new Headers({
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+      "Content-Type": "application/json"
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      loading.className = loading.className.replace("show", "");
+      if (data.status === 201 || 200) {
         msgOk.className = "show";
         setTimeout(() => {
           msgOk.className = msgOk.className.replace("show", "");

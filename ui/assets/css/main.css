@@ -267,19 +267,133 @@ h1.auth-title {
   margin-right: 15px;
 }
 
-.cta-going {
-  width: 100%;
-  height: 50px;
-  padding: 0;
-  font-size: 20px;
-  color: #fff;
-  text-align: center;
+.yes:hover {
+  color: #53e3a6;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.yes:hover span {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.yes:active {
+  -webkit-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.yes span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #53e3a6;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.yes span:hover {
+  opacity: 1;
+}
+.yes span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #53e3a6;
+}
+
+.no:hover {
+  color: #f0776c;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.no:hover span {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.no:active {
+  -webkit-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.no span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
   background: #f0776c;
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  outline: 0;
-  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.no span:hover {
+  opacity: 1;
+}
+.no span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #f0776c;
+}
+
+.maybe:hover {
+  color: #ffdc00;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.maybe:hover span {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.maybe:active {
+  -webkit-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.maybe span {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #ffdc00;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.maybe span:hover {
+  opacity: 1;
+}
+.maybe span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #ffdc00;
 }
 
 /* Meetup page ask question
