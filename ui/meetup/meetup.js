@@ -4,9 +4,6 @@ function getMeetup() {
   const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
     window.sessionStorage.m_id
   }`;
-  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
-  //   window.sessionStorage.m_id
-  // }`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -68,7 +65,7 @@ function getMeetup() {
                       <img src="http://i.pravatar.cc/300" alt="profile-image" />
                   </div>
                   <div class="question-body">
-                      <p>${q_title}</p>
+                      <p onclick="goToSpecificQuestion(${q_id})">${q_title}</p>
                         <button class="react upvote" onclick="upvote(${q_id})">
                             <i class='fa fa-thumbs-up'></i>
                             Upvote
@@ -126,7 +123,15 @@ function validate() {
     return false;
   }
 
-  postQuestion();
+  if (sessionStorage.accessToken) {
+    postQuestion();
+  } else {
+    msgErr.className = "show";
+    setTimeout(() => {
+      msgErr.className = msgErr.className.replace("show", "");
+    }, 4000);
+    msgErr.innerHTML = "Plese log in to post question";
+  }
 }
 
 function postQuestion() {
@@ -135,9 +140,6 @@ function postQuestion() {
   const url = `https://questioner2.herokuapp.com/api/v2/meetups/${
     window.sessionStorage.m_id
   }/questions`;
-  // const url = `http://127.0.0.1:5000/api/v2/meetups/${
-  //   window.sessionStorage.m_id
-  // }/questions`;
   loading.className = "show";
   setTimeout(() => {
     loading.className = loading.className.replace("show", "");
@@ -172,104 +174,125 @@ function postQuestion() {
 }
 
 function upvote(id) {
-  const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/upvote`;
-  // const url = `http://127.0.0.1:5000/api/v2/questions/${id}/upvote`;
-  loading.className = "show";
-  setTimeout(() => {
-    loading.className = loading.className.replace("show", "");
-  }, 15000);
-  fetch(url, {
-    method: "PATCH",
-    headers: new Headers({
-      Authorization: `Bearer ${sessionStorage.accessToken}`
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
+  if (sessionStorage.accessToken) {
+    const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/upvote`;
+    loading.className = "show";
+    setTimeout(() => {
       loading.className = loading.className.replace("show", "");
-      if (data.status === 201) {
-        msgOk.className = "show";
-        setTimeout(() => {
-          msgOk.className = msgOk.className.replace("show", "");
-        }, 4000);
-        msgOk.innerHTML = "";
-        msgOk.innerHTML = data.message;
-      } else {
-        msgErr.className = "show";
-        setTimeout(() => {
-          msgErr.className = msgErr.className.replace("show", "");
-        }, 4000);
-        msgErr.innerHTML = data.message;
-      }
-    });
+    }, 15000);
+    fetch(url, {
+      method: "PATCH",
+      headers: new Headers({
+        Authorization: `Bearer ${sessionStorage.accessToken}`
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        loading.className = loading.className.replace("show", "");
+        if (data.status === 201) {
+          msgOk.className = "show";
+          setTimeout(() => {
+            msgOk.className = msgOk.className.replace("show", "");
+          }, 4000);
+          msgOk.innerHTML = "";
+          msgOk.innerHTML = data.message;
+        } else {
+          msgErr.className = "show";
+          setTimeout(() => {
+            msgErr.className = msgErr.className.replace("show", "");
+          }, 4000);
+          msgErr.innerHTML = data.message;
+        }
+      });
+  } else {
+    msgErr.className = "show";
+    setTimeout(() => {
+      msgErr.className = msgErr.className.replace("show", "");
+    }, 4000);
+    msgErr.innerHTML = "Plese log in to vote";
+  }
 }
 
 function downvote(id) {
-  const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/downvote`;
-  // const url = `http://127.0.0.1:5000/api/v2/questions/${id}/downvote`;
-  loading.className = "show";
-  setTimeout(() => {
-    loading.className = loading.className.replace("show", "");
-  }, 15000);
-  fetch(url, {
-    method: "PATCH",
-    headers: new Headers({
-      Authorization: `Bearer ${sessionStorage.accessToken}`
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
+  if (sessionStorage.accessToken) {
+    const url = `https://questioner2.herokuapp.com/api/v2/questions/${id}/downvote`;
+    loading.className = "show";
+    setTimeout(() => {
       loading.className = loading.className.replace("show", "");
-      if (data.status === 201) {
-        msgOk.className = "show";
-        setTimeout(() => {
-          msgOk.className = msgOk.className.replace("show", "");
-        }, 4000);
-        msgOk.innerHTML = "";
-        msgOk.innerHTML = data.message;
-      } else {
-        msgErr.className = "show";
-        setTimeout(() => {
-          msgErr.className = msgErr.className.replace("show", "");
-        }, 4000);
-        msgErr.innerHTML = data.message;
-      }
-    });
+    }, 15000);
+    fetch(url, {
+      method: "PATCH",
+      headers: new Headers({
+        Authorization: `Bearer ${sessionStorage.accessToken}`
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        loading.className = loading.className.replace("show", "");
+        if (data.status === 201) {
+          msgOk.className = "show";
+          setTimeout(() => {
+            msgOk.className = msgOk.className.replace("show", "");
+          }, 4000);
+          msgOk.innerHTML = "";
+          msgOk.innerHTML = data.message;
+        } else {
+          msgErr.className = "show";
+          setTimeout(() => {
+            msgErr.className = msgErr.className.replace("show", "");
+          }, 4000);
+          msgErr.innerHTML = data.message;
+        }
+      });
+  } else {
+    msgErr.className = "show";
+    setTimeout(() => {
+      msgErr.className = msgErr.className.replace("show", "");
+    }, 4000);
+    msgErr.innerHTML = "Plese log in to vote";
+  }
 }
 
 function rsvp(id, res) {
-  const url = `https://questioner2.herokuapp.com/api/v2/meetups/${id}/rsvps`;
-  // const url = `http://127.0.0.1:5000/api/v2/meetups/${id}/rsvps`;
-  loading.className = "show";
-  setTimeout(() => {
-    loading.className = loading.className.replace("show", "");
-  }, 15000);
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify({ status: res }),
-    headers: new Headers({
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-      "Content-Type": "application/json"
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
+  if (sessionStorage.accessToken) {
+    const url = `https://questioner2.herokuapp.com/api/v2/meetups/${id}/rsvps`;
+    loading.className = "show";
+    setTimeout(() => {
       loading.className = loading.className.replace("show", "");
-      if (data.status === 201 || 200) {
-        msgOk.className = "show";
-        setTimeout(() => {
-          msgOk.className = msgOk.className.replace("show", "");
-        }, 4000);
-        msgOk.innerHTML = "";
-        msgOk.innerHTML = data.message;
-      } else {
-        msgErr.className = "show";
-        setTimeout(() => {
-          msgErr.className = msgErr.className.replace("show", "");
-        }, 4000);
-        msgErr.innerHTML = data.message;
-      }
-    });
+    }, 15000);
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({ status: res }),
+      headers: new Headers({
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        "Content-Type": "application/json"
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        loading.className = loading.className.replace("show", "");
+        if (data.status === 201 || 200) {
+          msgOk.className = "show";
+          setTimeout(() => {
+            msgOk.className = msgOk.className.replace("show", "");
+          }, 4000);
+          msgOk.innerHTML = "";
+          msgOk.innerHTML = data.message;
+        } else {
+          msgErr.className = "show";
+          setTimeout(() => {
+            msgErr.className = msgErr.className.replace("show", "");
+          }, 4000);
+          msgErr.innerHTML = data.message;
+        }
+      });
+  } else {
+    msgErr.className = "show";
+    setTimeout(() => {
+      msgErr.className = msgErr.className.replace("show", "");
+    }, 4000);
+    msgErr.innerHTML = "Plese log in to rsvp";
+  }
 }
 
 function goToSpecificQuestion(id) {
