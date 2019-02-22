@@ -159,6 +159,8 @@ function postQuestion() {
         }, 4000);
         msgOk.innerHTML = "";
         msgOk.innerHTML = data.message;
+        meetup_info.value = "";
+        getMeetup();
       } else {
         msgErr.className = "show";
         setTimeout(() => {
