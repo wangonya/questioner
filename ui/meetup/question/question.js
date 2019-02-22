@@ -41,10 +41,11 @@ function getQuestion() {
                             <span id="downvotes">-1</span>
                         </button>
                 </div>
-            </div><div id="comment-count">${answers.length} comments</div>`;
-
-        answers.forEach(({ q_comment }) => {
-          q_top.innerHTML += `
+            </div><div id="comment-count">Comments</div>`;
+        console.log(answers);
+        if (question.q_comment) {
+          answers.forEach(({ q_comment }) => {
+            q_top.innerHTML += `
             <div class="flex" id="answer">
                 <div class="profile">
                     <img src="http://i.pravatar.cc/300" alt="author" />
@@ -54,7 +55,8 @@ function getQuestion() {
                     <p>${q_comment}</p>
                 </div>
             </div>`;
-        });
+          });
+        }
       } else {
         msgErr.className = "show";
         setTimeout(() => {
